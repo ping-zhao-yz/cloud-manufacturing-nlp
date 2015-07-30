@@ -1,0 +1,552 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY v1 "http://purl.org/goodrelations/v1#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY manuservice "http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#"
+     xml:base="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice"
+     xmlns:manuservice="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:v1="http://purl.org/goodrelations/v1#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#hasAccessTo -->
+
+    <owl:ObjectProperty rdf:about="&manuservice;hasAccessTo"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#hasAddress -->
+
+    <owl:ObjectProperty rdf:about="&manuservice;hasAddress">
+        <rdfs:range rdf:resource="&manuservice;Address"/>
+        <rdfs:domain rdf:resource="&manuservice;BusinessEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#hasResource -->
+
+    <owl:ObjectProperty rdf:about="&manuservice;hasResource"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#city -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;city">
+        <rdfs:domain rdf:resource="&manuservice;Address"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#country -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;country">
+        <rdfs:domain rdf:resource="&manuservice;Address"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#creditGrade -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;creditGrade">
+        <rdfs:domain rdf:resource="&manuservice;BusinessEntity"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#entityType -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;entityType">
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#name -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;name">
+        <rdfs:domain rdf:resource="&manuservice;Address"/>
+        <rdfs:domain rdf:resource="&manuservice;BusinessEntity"/>
+        <rdfs:domain rdf:resource="&manuservice;HardResource"/>
+        <rdfs:domain rdf:resource="&manuservice;Resource"/>
+        <rdfs:domain rdf:resource="&manuservice;Service"/>
+        <rdfs:domain rdf:resource="&manuservice;SoftResource"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#yearsInOperation -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;yearsInOperation">
+        <rdfs:domain rdf:resource="&manuservice;BusinessEntity"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#zipCode -->
+
+    <owl:DatatypeProperty rdf:about="&manuservice;zipCode">
+        <rdfs:domain rdf:resource="&manuservice;Address"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Address -->
+
+    <owl:Class rdf:about="&manuservice;Address"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#BusinessEntity -->
+
+    <owl:Class rdf:about="&manuservice;BusinessEntity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Capability -->
+
+    <owl:Class rdf:about="&manuservice;Capability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ComputationalResource -->
+
+    <owl:Class rdf:about="&manuservice;ComputationalResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;HardResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#DesignCapability -->
+
+    <owl:Class rdf:about="&manuservice;DesignCapability">
+        <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ExperimentationCapability -->
+
+    <owl:Class rdf:about="&manuservice;ExperimentationCapability">
+        <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#HardResource -->
+
+    <owl:Class rdf:about="&manuservice;HardResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#KnowledgeResource -->
+
+    <owl:Class rdf:about="&manuservice;KnowledgeResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;SoftResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#MachiningResource -->
+
+    <owl:Class rdf:about="&manuservice;MachiningResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;HardResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ManagementCapability -->
+
+    <owl:Class rdf:about="&manuservice;ManagementCapability">
+        <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#MaterialResource -->
+
+    <owl:Class rdf:about="&manuservice;MaterialResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;HardResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#PersonnelResource -->
+
+    <owl:Class rdf:about="&manuservice;PersonnelResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;SoftResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ProductionCapability -->
+
+    <owl:Class rdf:about="&manuservice;ProductionCapability">
+        <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Resource -->
+
+    <owl:Class rdf:about="&manuservice;Resource"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Service -->
+
+    <owl:Class rdf:about="&manuservice;Service"/>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#SoftResource -->
+
+    <owl:Class rdf:about="&manuservice;SoftResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#SoftwareResource -->
+
+    <owl:Class rdf:about="&manuservice;SoftwareResource">
+        <rdfs:subClassOf rdf:resource="&manuservice;SoftResource"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyA -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyA">
+        <rdf:type rdf:resource="&manuservice;BusinessEntity"/>
+        <creditGrade rdf:datatype="&xsd;float">5.2</creditGrade>
+        <yearsInOperation rdf:datatype="&xsd;int">54</yearsInOperation>
+        <name rdf:datatype="&xsd;string">CompanyA</name>
+        <entityType rdf:datatype="&xsd;string">Private Limited Company</entityType>
+        <hasAddress rdf:resource="&manuservice;CompanyAAdd"/>
+        <hasResource rdf:resource="&manuservice;R_AutoCAD1_A"/>
+        <hasResource rdf:resource="&manuservice;R_NXCNC1_A"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyAAdd -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyAAdd">
+        <rdf:type rdf:resource="&manuservice;Address"/>
+        <zipCode rdf:datatype="&rdfs;Literal">1010</zipCode>
+        <city rdf:datatype="&xsd;string">Auckland</city>
+        <country rdf:datatype="&xsd;string">New Zealand</country>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyB -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyB">
+        <rdf:type rdf:resource="&manuservice;BusinessEntity"/>
+        <yearsInOperation rdf:datatype="&xsd;int">12</yearsInOperation>
+        <creditGrade rdf:datatype="&xsd;float">8.9</creditGrade>
+        <name rdf:datatype="&xsd;string">CompanyB</name>
+        <entityType rdf:datatype="&xsd;string">Foreign Limited Liability</entityType>
+        <hasAddress rdf:resource="&manuservice;CompanyBAdd"/>
+        <hasResource rdf:resource="&manuservice;R_AutoCAD1_B"/>
+        <hasResource rdf:resource="&manuservice;R_NXCNC1_B"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyBAdd -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyBAdd">
+        <rdf:type rdf:resource="&manuservice;Address"/>
+        <zipCode rdf:datatype="&rdfs;Literal">310000</zipCode>
+        <country rdf:datatype="&xsd;string">China</country>
+        <city rdf:datatype="&xsd;string">Hangzhou</city>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyC -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyC">
+        <rdf:type rdf:resource="&manuservice;BusinessEntity"/>
+        <yearsInOperation rdf:datatype="&xsd;int">2</yearsInOperation>
+        <creditGrade rdf:datatype="&xsd;float">7.8</creditGrade>
+        <name rdf:datatype="&xsd;string">CompanyC</name>
+        <entityType rdf:datatype="&xsd;string">Professional Corporation</entityType>
+        <hasAddress rdf:resource="&manuservice;CompanyCAdd"/>
+        <hasResource rdf:resource="&manuservice;R_AutoCAD1_C"/>
+        <hasResource rdf:resource="&manuservice;R_NXCNC1_C"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyCAdd -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyCAdd">
+        <rdf:type rdf:resource="&manuservice;Address"/>
+        <zipCode rdf:datatype="&rdfs;Literal">77002</zipCode>
+        <city rdf:datatype="&xsd;string">Houston</city>
+        <country rdf:datatype="&xsd;string">United States</country>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyD -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyD">
+        <rdf:type rdf:resource="&manuservice;BusinessEntity"/>
+        <yearsInOperation rdf:datatype="&xsd;int">21</yearsInOperation>
+        <creditGrade rdf:datatype="&xsd;float">8.6</creditGrade>
+        <name rdf:datatype="&xsd;string">CompanyD</name>
+        <entityType rdf:datatype="&xsd;string">Sole Trader</entityType>
+        <hasAddress rdf:resource="&manuservice;CompanyDAdd"/>
+        <hasResource rdf:resource="&manuservice;R_AutoCAD1_D"/>
+        <hasResource rdf:resource="&manuservice;R_NXCNC1_D"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyDAdd -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyDAdd">
+        <rdf:type rdf:resource="&manuservice;Address"/>
+        <zipCode rdf:datatype="&rdfs;Literal">8061</zipCode>
+        <city rdf:datatype="&xsd;string">Christchurch</city>
+        <country rdf:datatype="&xsd;string">New Zealand</country>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyE -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyE">
+        <rdf:type rdf:resource="&manuservice;BusinessEntity"/>
+        <yearsInOperation rdf:datatype="&xsd;int">1</yearsInOperation>
+        <creditGrade rdf:datatype="&xsd;float">5.4</creditGrade>
+        <name rdf:datatype="&xsd;string">CompanyE</name>
+        <entityType rdf:datatype="&xsd;string">Look-through company</entityType>
+        <hasAddress rdf:resource="&manuservice;CompanyEAdd"/>
+        <hasResource rdf:resource="&manuservice;R_AutoCAD1_E"/>
+        <hasResource rdf:resource="&manuservice;R_NXCNC1_E"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyEAdd -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyEAdd">
+        <rdf:type rdf:resource="&manuservice;Address"/>
+        <zipCode rdf:datatype="&rdfs;Literal">2013</zipCode>
+        <city rdf:datatype="&xsd;string">Auckland</city>
+        <country rdf:datatype="&xsd;string">New Zealand</country>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyF -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyF">
+        <rdf:type rdf:resource="&manuservice;BusinessEntity"/>
+        <creditGrade rdf:datatype="&xsd;float">6.2</creditGrade>
+        <yearsInOperation rdf:datatype="&xsd;int">8</yearsInOperation>
+        <name rdf:datatype="&xsd;string">CompanyF</name>
+        <entityType rdf:datatype="&xsd;string">Private Limited Company</entityType>
+        <hasAddress rdf:resource="&manuservice;CompanyFAdd"/>
+        <hasResource rdf:resource="&manuservice;R_AutoCAD1_F"/>
+        <hasResource rdf:resource="&manuservice;R_NXCNC1_F"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyFAdd -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;CompanyFAdd">
+        <rdf:type rdf:resource="&manuservice;Address"/>
+        <zipCode rdf:datatype="&rdfs;Literal">1023</zipCode>
+        <city rdf:datatype="&xsd;string">Auckland</city>
+        <country rdf:datatype="&xsd;string">New Zealand</country>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_A -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_A">
+        <rdf:type rdf:resource="&manuservice;SoftResource"/>
+        <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
+        <name rdf:datatype="&xsd;string">R_AutoCAD1_A</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_B -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_B">
+        <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
+        <name rdf:datatype="&xsd;string">R_AutoCAD1_B</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_C -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_C">
+        <rdf:type rdf:resource="&manuservice;SoftResource"/>
+        <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
+        <name rdf:datatype="&xsd;string">R_AutoCAD1_C</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_D -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_D">
+        <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
+        <name rdf:datatype="&xsd;string">R_AutoCAD1_D</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_E -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_E">
+        <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
+        <name rdf:datatype="&xsd;string">R_AutoCAD1_E</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_F -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_F">
+        <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
+        <name rdf:datatype="&xsd;string">R_AutoCAD1_F</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_A -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_A">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">R_NXCNC1_A</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_B -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_B">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">R_NXCNC1_B</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_C -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_C">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">R_NXCNC1_C</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_D -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_D">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">R_NXCNC1_D</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_E -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_E">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">R_NXCNC1_E</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_F -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_F">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">R_NXCNC1_F</name>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+
