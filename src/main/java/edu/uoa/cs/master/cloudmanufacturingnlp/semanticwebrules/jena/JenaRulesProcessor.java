@@ -117,10 +117,10 @@ public class JenaRulesProcessor {
 	private void assembleBodyTerms() {
 
 		// who has resource, e.g. (?org cm:hasRes ?y), (?org gr:name ?n), equal(?n, “B”)
-		this.jenaRulesBuilder.withHasResource(Tools.removeDashSuffix(this.subject));
+		this.jenaRulesBuilder.withResourceOwner(Tools.removeDashSuffix(this.subject));
 
 		// the type of resource
-		assembleResourceTypeOrName();
+		assembleResourceType();
 
 		// assemble the conditions applied to the user who has access to resource
 		assembleAccessConditions();
@@ -134,7 +134,7 @@ public class JenaRulesProcessor {
 	 * e.g. (?y rdf:type cm:MachiningResource)
 	 * 
 	 */
-	private void assembleResourceTypeOrName() {
+	private void assembleResourceType() {
 
 		// general resource
 		if (this.dictionaryService.isSynonym(this.object, Constants.Ontology.RESOURCE)) {
@@ -164,8 +164,8 @@ public class JenaRulesProcessor {
 	 */
 	private void assembleAccessConditions() {
 
-		// usually all the accesser should be an organization
-		this.jenaRulesBuilder.withOrganization();
+		// usually all the partner should be an organization
+		this.jenaRulesBuilder.withPartnerGeneralInformation();
 
 		// conditions such as the geography from where the resource can be accessed
 		String action_prep = this.nlpHelper.lookupDep(this.triples, this.action, Constants.Nlp.PREP);
@@ -173,18 +173,22 @@ public class JenaRulesProcessor {
 		if (!StringUtils.isEmpty(action_prep)) {
 			String accessLimit_pobj = this.nlpHelper.lookupDep(this.triples, action_prep, Constants.Nlp.POBJ);
 			if (!StringUtils.isEmpty(accessLimit_pobj)) {
-				assembleAllowedCompanies(action_prep, accessLimit_pobj);
+				assemblePartnerSpecificInformation(action_prep, accessLimit_pobj);
 			}
 		}
 	}
 
 	/**
-	 * Assemble the allowed object. e.g. "within its own company", "with NZ-based companies",
-	 * "in the public cloud"
+	 * Assemble the allowed object. 
+	 * e.g. "within its own company", "with NZ-based companies", "in the public cloud".
+	 * 
+	 *  1. assemble partner identity
+	 *  2. assemble partner credit rating
+	 *  3. assemble partner operation years
 	 * 
 	 * @param allowedObj
 	 */
-	private void assembleAllowedCompanies(String actionPrep, String allowedObj) {
+	private void assemblePartnerSpecificInformation(String actionPrep, String allowedObj) {
 
 		if (!this.dictionaryService.isSynonym(actionPrep, Constants.Nlp.WITH)) {
 			return;
@@ -194,7 +198,7 @@ public class JenaRulesProcessor {
 
 		// share resource within own company
 		if (this.dictionaryService.isSynonym(allowedObj_amod, Constants.Nlp.OWN)) {
-			this.jenaRulesBuilder.withAccesserName(Tools.removeDashSuffix(this.subject));
+			this.jenaRulesBuilder.withPartnerName(Tools.removeDashSuffix(this.subject));
 		}
 		// share resource with the public cloud
 		else if (this.dictionaryService.isSynonym(allowedObj_amod, Constants.Nlp.PUBLIC)) {
@@ -209,7 +213,7 @@ public class JenaRulesProcessor {
 			String baseLocation = this.nlpHelper.getBaseLocation(allowedObj_amod);
 
 			if (!StringUtils.isEmpty(baseLocation)) {
-				this.jenaRulesBuilder.withAccesserBaseLocation(baseLocation, allowedObj);
+				this.jenaRulesBuilder.withPartnerBaseLocation(baseLocation, allowedObj);
 			}
 		}
 		// share resource with other companies
@@ -224,7 +228,7 @@ public class JenaRulesProcessor {
 					amods += Tools.removeDashSuffix(amod) + " ";
 				}
 				amods += Tools.removeDashSuffix(allowedObj);
-				this.jenaRulesBuilder.withAccesserEntityType(amods, allowedObj);
+				this.jenaRulesBuilder.withPartnerEntityType(amods, allowedObj);
 			}
 		}
 
@@ -261,7 +265,7 @@ public class JenaRulesProcessor {
 		if (deps != null) {
 			if (deps.size() == 1) {
 				String name = Tools.removeDashSuffix(deps.get(0));
-				this.jenaRulesBuilder.withAccesserName(name);
+				this.jenaRulesBuilder.withPartnerName(name);
 
 			} else {
 				for (String dep : deps) {
@@ -270,7 +274,7 @@ public class JenaRulesProcessor {
 					}
 
 					String name = Tools.removeDashSuffix(dep);
-					this.jenaRulesBuilder.addAccesserName(name, allowedObj);
+					this.jenaRulesBuilder.addPartnerName(name, allowedObj);
 				}
 			}
 		}

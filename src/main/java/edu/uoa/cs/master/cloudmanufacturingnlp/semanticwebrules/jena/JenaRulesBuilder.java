@@ -67,7 +67,7 @@ public class JenaRulesBuilder {
 	/**
 	 * e.g. (?org manuservice:hasResource ?y), (?org manuservice:name 'B')
 	 */
-	public JenaRulesBuilder withHasResource(String subject) {
+	public JenaRulesBuilder withResourceOwner(String subject) {
 		String property_hasResource = this.ontologyService.lookupOntProperty(Constants.Ontology.HAS_RESOURCE);
 		String fact_hasRes = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?org", property_hasResource, "?y");
 
@@ -112,7 +112,7 @@ public class JenaRulesBuilder {
 	 * 
 	 * @param variableNode
 	 */
-	public JenaRulesBuilder withOrganization() {
+	public JenaRulesBuilder withPartnerGeneralInformation() {
 
 		String class_business_entity = this.ontologyService.lookupOntClass(Constants.Ontology.BUSINESS_ENTITY);
 		this.organization = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?x", Constants.Ontology.RDF_TYPE_USING_PREFIX,
@@ -126,13 +126,13 @@ public class JenaRulesBuilder {
 	 * @param subject
 	 * @return
 	 */
-	public JenaRulesBuilder withAccesserName(String subject) {
+	public JenaRulesBuilder withPartnerName(String subject) {
 		String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
 		this.accesserName = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", property_name, subject);
 		return this;
 	}
 
-	public JenaRulesBuilder addAccesserName(String subject, String referenceSubject) {
+	public JenaRulesBuilder addPartnerName(String subject, String referenceSubject) {
 		String object = this.ontologyService.lookupObjectByNlObjectAndReferenceObject(subject, referenceSubject);
 		String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
 		String name = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", property_name, object);
@@ -148,7 +148,7 @@ public class JenaRulesBuilder {
 	 * @param allowedObj
 	 * @return
 	 */
-	public JenaRulesBuilder withAccesserBaseLocation(String baseLocation, String allowedObj) {
+	public JenaRulesBuilder withPartnerBaseLocation(String baseLocation, String allowedObj) {
 		this.accesserBaseLocation = buildLocationRules(baseLocation, Tools.removeDashSuffix(allowedObj));
 		return this;
 	}
@@ -199,7 +199,7 @@ public class JenaRulesBuilder {
 	 * @param entityType
 	 * @return
 	 */
-	public JenaRulesBuilder withAccesserEntityType(String entityType, String referenceSubject) {
+	public JenaRulesBuilder withPartnerEntityType(String entityType, String referenceSubject) {
 
 		Entry<String, String> predicateSubject = this.ontologyService.lookupPredicateSubjectByObject(entityType, referenceSubject);
 
