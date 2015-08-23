@@ -139,14 +139,17 @@ public class JenaRulesProcessor {
 		// general resource
 		if (this.dictionaryService.isSynonym(this.object, Constants.Ontology.RESOURCE)) {
 			String obj_amod = this.nlpHelper.lookupDep(this.triples, this.object, Constants.Nlp.AMOD);
+			// hard resources
 			if (!StringUtils.isEmpty(obj_amod)) {
 				this.jenaRulesBuilder.withResouceType(obj_amod);
-			} else {
+			} 
+			// machining resources
+			else {
 				String obj_nn = this.nlpHelper.lookupDep(this.triples, this.object, Constants.Nlp.NN);
 				this.jenaRulesBuilder.withResouceType(obj_nn);
 			}
 		}
-		// assume the resource is specific
+		// assume the resource is specific, e.g., OKUMA_MP-46V
 		else {
 			String obj_nn = this.nlpHelper.lookupDep(this.triples, this.object, Constants.Nlp.NN);
 			String resName = Tools.removeDashSuffix(this.object);

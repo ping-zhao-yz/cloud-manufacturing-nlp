@@ -15,6 +15,6 @@ with: within, in
 
 companies: company
 company: companies
-private limited company: private limited companies
+private limited company: private limited companies, limited private company, limited private companies
 
 BusinessEntity: company, companies

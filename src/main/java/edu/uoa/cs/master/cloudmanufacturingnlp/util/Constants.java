@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,10 @@
  */
 package edu.uoa.cs.master.cloudmanufacturingnlp.util;
 
-public interface Constants {
+public class Constants {
+
+	// IMPORTANT: this is the default value for running under tomcat; need to preset appropriately if under other scenarios
+	public static String LOCAL_BASE = FilePath.LOCAL_BASE_TOMCAT;
 
 	public interface Nlp {
 		public final String NSUBJ = "nsubj";
@@ -94,7 +97,9 @@ public interface Constants {
 	}
 
 	public interface FilePath {
-		public static final String LOCAL_BASE = "/Users/pingz/Documents/software/apache-tomcat-7.0.55/webapps/cloudmanufacturingnlp/WEB-INF/classes/resource/";
+
+		public static final String LOCAL_BASE_TOMCAT = "../webapps/cloudmanufacturingnlp/WEB-INF/classes/resource/";
+		public static final String LOCAL_BASE_JAVA = "src/main/resources/resource/";
 
 		public static final String MC_LOCAL = LOCAL_BASE + "cloudontology.owl";
 		public static final String SYNONYM = LOCAL_BASE + "synonym.txt";

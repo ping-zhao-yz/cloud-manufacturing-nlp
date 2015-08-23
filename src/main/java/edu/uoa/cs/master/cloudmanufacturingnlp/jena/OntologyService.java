@@ -70,8 +70,8 @@ public class OntologyService {
 		PrintUtil.registerPrefix(Constants.Ontology.PREFIX, Constants.Ontology.NS_MC);
 
 		// load ont properties
-		List<OntProperty> ontProperties = JenaOntModelManager.getInstance().loadOntProperties();
-		for (OntProperty ontProperty : ontProperties) {
+		List<OntProperty> ontologyProperties = JenaOntModelManager.getInstance().loadOntProperties();
+		for (OntProperty ontProperty : ontologyProperties) {
 			this.ontProperties.add(PrintUtil.print(ontProperty));
 		}
 
@@ -85,7 +85,7 @@ public class OntologyService {
 	private void loadStatementTriples() {
 
 		PrintUtil.registerPrefix(Constants.Ontology.PREFIX, Constants.Ontology.NS_MC);
-		this.infModel = JenaInfModelManager.getInstance().createInfModel("");
+		this.infModel = JenaInfModelManager.getInstance().createInfModelByRule("");
 
 		for (StmtIterator it = this.infModel.listStatements(); it.hasNext();) {
 			Triple triple = it.next().asTriple();

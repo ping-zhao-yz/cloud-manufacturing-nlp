@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@ import edu.uoa.cs.master.cloudmanufacturingnlp.util.Tools;
 
 public class JenaRulesBuilder {
 
-	private OntologyService ontologyService;
+	private final OntologyService ontologyService;
 
 	private String ruleHeadTerm = null;
 	private String hasResource = null;
@@ -41,24 +41,24 @@ public class JenaRulesBuilder {
 	private String resourceName = null;
 	private String organization = null;
 	private String accesserName = null;
-	private List<String> accesserNameList = new ArrayList<>();
+	private final List<String> accesserNameList = new ArrayList<>();
 	private String accesserBaseLocation = null;
 	private String accesserEntityType = null;
 	private String accessCreditGrade = null;
 	private String accessOperationYears = null;
 
-	public JenaRulesBuilder(DictionaryService dictionaryService) {
+	public JenaRulesBuilder(final DictionaryService dictionaryService) {
 		this.ontologyService = new OntologyService(dictionaryService);
 	}
 
 	/**
 	 * e.g. (?x manuservice:hasAccessTo ?y)
-	 * 
+	 *
 	 * @param action
 	 * @return
 	 */
-	public JenaRulesBuilder withRuleHeadTerm(String action) {
-		String objectProperty_action = this.ontologyService.lookupOntProperty(action);
+	public JenaRulesBuilder withRuleHeadTerm(final String action) {
+		final String objectProperty_action = this.ontologyService.lookupOntProperty(action);
 		this.ruleHeadTerm = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?x", objectProperty_action, "?y");
 
 		return this;
@@ -67,12 +67,12 @@ public class JenaRulesBuilder {
 	/**
 	 * e.g. (?org manuservice:hasResource ?y), (?org manuservice:name 'B')
 	 */
-	public JenaRulesBuilder withResourceOwner(String subject) {
-		String property_hasResource = this.ontologyService.lookupOntProperty(Constants.Ontology.HAS_RESOURCE);
-		String fact_hasRes = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?org", property_hasResource, "?y");
+	public JenaRulesBuilder withResourceOwner(final String subject) {
+		final String property_hasResource = this.ontologyService.lookupOntProperty(Constants.Ontology.HAS_RESOURCE);
+		final String fact_hasRes = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?org", property_hasResource, "?y");
 
-		String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
-		String fact_name = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?org", property_name, subject);
+		final String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
+		final String fact_name = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?org", property_name, subject);
 
 		this.hasResource = fact_hasRes + ", " + fact_name;
 		return this;
@@ -80,41 +80,40 @@ public class JenaRulesBuilder {
 
 	/**
 	 * e.g. (?y rdf:type manuservice:SoftResource)
-	 * 
-	 * @param resourceType
+	 *
+	 * @param ontologyResourceType
 	 * @return
 	 */
-	public JenaRulesBuilder withResouceType(String resourceType) {
-		if (StringUtils.isBlank(resourceType)) {
-			resourceType = Constants.Ontology.RESOURCE;
-		}
-		String class_resourceType = this.ontologyService.lookupOntClass(resourceType);
+	public JenaRulesBuilder withResouceType(final String ontologyResourceType) {
+		final String classResourceType = StringUtils.isBlank(ontologyResourceType) ? Constants.Ontology.RESOURCE : ontologyResourceType;
+		final String class_resourceType = this.ontologyService.lookupOntClass(classResourceType);
 
 		this.resourceType = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?y", Constants.Ontology.RDF_TYPE_USING_PREFIX,
 				class_resourceType);
+
 		return this;
 	}
 
 	/**
 	 * e.g. (?y manuservice:name 'R_AutoCAD1_F')
-	 * 
-	 * @param resourceName
+	 *
+	 * @param resName
 	 * @return
 	 */
-	public JenaRulesBuilder withResouceName(String resourceName) {
-		String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
-		this.resourceName = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?y", property_name, resourceName);
+	public JenaRulesBuilder withResouceName(final String resName) {
+		final String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
+		this.resourceName = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?y", property_name, resName);
 		return this;
 	}
 
 	/**
 	 * Factor e.g. "(?x rdf:type manuservice:BusinessEntity)"
-	 * 
+	 *
 	 * @param variableNode
 	 */
 	public JenaRulesBuilder withPartnerGeneralInformation() {
 
-		String class_business_entity = this.ontologyService.lookupOntClass(Constants.Ontology.BUSINESS_ENTITY);
+		final String class_business_entity = this.ontologyService.lookupOntClass(Constants.Ontology.BUSINESS_ENTITY);
 		this.organization = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?x", Constants.Ontology.RDF_TYPE_USING_PREFIX,
 				class_business_entity);
 		return this;
@@ -122,20 +121,20 @@ public class JenaRulesBuilder {
 
 	/**
 	 * e.g. (?x manuservice:name 'Company-B')
-	 * 
+	 *
 	 * @param subject
 	 * @return
 	 */
-	public JenaRulesBuilder withPartnerName(String subject) {
-		String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
+	public JenaRulesBuilder withPartnerName(final String subject) {
+		final String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
 		this.accesserName = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", property_name, subject);
 		return this;
 	}
 
-	public JenaRulesBuilder addPartnerName(String subject, String referenceSubject) {
-		String object = this.ontologyService.lookupObjectByNlObjectAndReferenceObject(subject, referenceSubject);
-		String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
-		String name = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", property_name, object);
+	public JenaRulesBuilder addPartnerName(final String subject, final String referenceSubject) {
+		final String object = this.ontologyService.lookupObjectByNlObjectAndReferenceObject(subject, referenceSubject);
+		final String property_name = this.ontologyService.lookupOntProperty(Constants.Ontology.NAME);
+		final String name = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", property_name, object);
 
 		this.accesserNameList.add(name);
 		return this;
@@ -143,48 +142,45 @@ public class JenaRulesBuilder {
 
 	/**
 	 * e.g. (?x manuservice:hasAddress ?addr), (?addr manuservice:country 'New Zealand')
-	 * 
+	 *
 	 * @param baseLocation
 	 * @param allowedObj
 	 * @return
 	 */
-	public JenaRulesBuilder withPartnerBaseLocation(String baseLocation, String allowedObj) {
+	public JenaRulesBuilder withPartnerBaseLocation(final String baseLocation, final String allowedObj) {
 		this.accesserBaseLocation = buildLocationRules(baseLocation, Tools.removeDashSuffix(allowedObj));
 		return this;
 	}
 
 	/**
 	 * Lookup proper subject and predicate by the given object and assemble the rule fact.
-	 * 
-	 * New Zealand={manuservice:country=manuservice:CompanyFAdd
-	 * manuservice:CompanyFAdd={manuservice:hasAddress=manuservice:CompanyF
+	 *
+	 * New Zealand={manuservice:country=manuservice:CompanyFAdd manuservice:CompanyFAdd={manuservice:hasAddress=manuservice:CompanyF
 	 * manuservice:BusinessEntity={rdf:type=manuservice:CompanyF, rdfs:domain=manuservice:name}
-	 * 
+	 *
 	 * @param object
 	 * @param referenceSubject
 	 * @return
 	 */
-	private String buildLocationRules(String object, String referenceSubject) {
+	private String buildLocationRules(final String object, final String referenceSubject) {
 
 		// look into 1 depth
 		// e.g. New Zealand={manuservice:country=manuservice:CompanyFAdd
-		Entry<String, String> entry_one = this.ontologyService.lookupPredicateSubjectByObject(object, referenceSubject);
+		final Entry<String, String> entry_one = this.ontologyService.lookupPredicateSubjectByObject(object, referenceSubject);
 		if (entry_one != null) {
-			String realObject = this.ontologyService.lookupObjectByNlObject(object);
+			final String realObject = this.ontologyService.lookupObjectByNlObject(object);
 			return buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", entry_one.getKey(), realObject);
 		}
 
 		// look into 2 depths
-		for (Map<String, String> predicateSubjectMap : this.ontologyService.lookupPredicateSubjectListByObject(object)) {
-			for (java.util.Iterator<Entry<String, String>> it = predicateSubjectMap.entrySet().iterator(); it.hasNext();) {
-				Entry<String, String> entry_two = it.next();
-
+		for (final Map<String, String> predicateSubjectMap : this.ontologyService.lookupPredicateSubjectListByObject(object)) {
+			for (final Entry<String, String> entry_two : predicateSubjectMap.entrySet()) {
 				// e.g. manuservice:CompanyFAdd={manuservice:hasAddress=manuservice:CompanyF
-				Entry<String, String> entryResult = this.ontologyService.lookupPredicateSubjectByObject(entry_two.getValue(),
+				final Entry<String, String> entryResult = this.ontologyService.lookupPredicateSubjectByObject(entry_two.getValue(),
 						referenceSubject);
 
 				if (entryResult != null) {
-					String realObject = this.ontologyService.lookupObjectByNlObject(object);
+					final String realObject = this.ontologyService.lookupObjectByNlObject(object);
 					return buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?x", entryResult.getKey(), "?addr")
 							+ ", " + buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?addr", entry_two.getKey(), realObject);
 				}
@@ -195,16 +191,16 @@ public class JenaRulesBuilder {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityType
 	 * @return
 	 */
-	public JenaRulesBuilder withPartnerEntityType(String entityType, String referenceSubject) {
+	public JenaRulesBuilder withPartnerEntityType(final String entityType, final String referenceSubject) {
 
-		Entry<String, String> predicateSubject = this.ontologyService.lookupPredicateSubjectByObject(entityType, referenceSubject);
+		final Entry<String, String> predicateSubject = this.ontologyService.lookupPredicateSubjectByObject(entityType, referenceSubject);
 
 		if (predicateSubject != null) {
-			String realObject = this.ontologyService.lookupObjectByNlObject(entityType);
+			final String realObject = this.ontologyService.lookupObjectByNlObject(entityType);
 			this.accesserEntityType = buildRuleFact(Constants.JenaRules.FACT_WITH_LITERAL_OBJECT, "?x", predicateSubject.getKey(),
 					realObject);
 		}
@@ -214,16 +210,16 @@ public class JenaRulesBuilder {
 
 	/**
 	 * e.g. (?x cm:creditGrade ?creditGrade), greaterThan(?creditGrade, 8.0)
-	 * 
+	 *
 	 * @param rating
 	 * @param comparator
 	 * @param thanValue
 	 * @return
 	 */
-	public JenaRulesBuilder withCreditGrade(String rating, String comparator, String thanValue) {
+	public JenaRulesBuilder withCreditGrade(final String rating, final String comparator, final String thanValue) {
 
-		String property_rating = this.ontologyService.lookupOntProperty(rating);
-		String object = "?" + Tools.removePrefix(property_rating);
+		final String property_rating = this.ontologyService.lookupOntProperty(rating);
+		final String object = "?" + Tools.removePrefix(property_rating);
 
 		this.accessCreditGrade = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?x", property_rating, object)
 				+ ", " + comparator + "(" + object + ", " + thanValue + ")";
@@ -231,9 +227,9 @@ public class JenaRulesBuilder {
 		return this;
 	}
 
-	public JenaRulesBuilder withOperationYears(String years, String comparator, String thanValue) {
-		String property_years = this.ontologyService.lookupOntProperty(years);
-		String object = "?" + Tools.removePrefix(property_years);
+	public JenaRulesBuilder withOperationYears(final String years, final String comparator, final String thanValue) {
+		final String property_years = this.ontologyService.lookupOntProperty(years);
+		final String object = "?" + Tools.removePrefix(property_years);
 
 		this.accessOperationYears = buildRuleFact(Constants.JenaRules.FACT_WITH_RESOURCE_OBJECT, "?x", property_years, object)
 				+ ", " + comparator + "(" + object + ", " + thanValue + ")";
@@ -241,7 +237,7 @@ public class JenaRulesBuilder {
 		return this;
 	}
 
-	private String buildRuleFact(String ruleTemplate, String subject, String predicate, String object) {
+	private String buildRuleFact(final String ruleTemplate, final String subject, final String predicate, final String object) {
 
 		String ruleFact = ruleTemplate;
 		if (subject != null) {
@@ -257,7 +253,7 @@ public class JenaRulesBuilder {
 	}
 
 	public String build() {
-		StringBuilder jenaFactors = new StringBuilder(1024);
+		final StringBuilder jenaFactors = new StringBuilder(1024);
 
 		if (!StringUtils.isBlank(this.ruleHeadTerm)) {
 			jenaFactors.append(this.ruleHeadTerm).append(" <- ");
@@ -284,10 +280,11 @@ public class JenaRulesBuilder {
 		}
 
 		if (!this.accesserNameList.isEmpty()) {
-			// since Jena doesn't support logic disjunction, only temporarily assemble factors with disjunctions, need to remove them in the end
+			// since Jena doesn't support logic disjunction, only temporarily assemble factors with disjunctions, need to remove them in the
+			// end
 			jenaFactors.append(Constants.Param.JENA_DISJUNCTION_START).append(" ");
 
-			for (String name : this.accesserNameList) {
+			for (final String name : this.accesserNameList) {
 				jenaFactors.append(name).append(" ").append(Constants.Param.JENA_DISJUNCTION).append(" ");
 			}
 			jenaFactors.append(Constants.Param.JENA_DISJUNCTION_END).append(" ");

@@ -396,6 +396,7 @@
         <hasAddress rdf:resource="&manuservice;CompanyEAdd"/>
         <hasResource rdf:resource="&manuservice;R_AutoCAD1_E"/>
         <hasResource rdf:resource="&manuservice;R_NXCNC1_E"/>
+        <hasResource rdf:resource="&manuservice;OKUMA_MP-46V"/>
     </owl:NamedIndividual>
     
 
@@ -440,6 +441,7 @@
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_A -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_A">
+        <rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;SoftResource"/>
         <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
         <name rdf:datatype="&xsd;string">R_AutoCAD1_A</name>
@@ -450,6 +452,7 @@
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_B -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_B">
+    	<rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
         <name rdf:datatype="&xsd;string">R_AutoCAD1_B</name>
     </owl:NamedIndividual>
@@ -487,6 +490,7 @@
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_F -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_F">
+    	<rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
         <name rdf:datatype="&xsd;string">R_AutoCAD1_F</name>
     </owl:NamedIndividual>
@@ -496,6 +500,7 @@
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_A -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_A">
+    	<rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_A</name>
     </owl:NamedIndividual>
@@ -505,6 +510,7 @@
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_B -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_B">
+        <rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_B</name>
     </owl:NamedIndividual>
@@ -514,6 +520,7 @@
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_C -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_C">
+        <rdf:type rdf:resource="&manuservice;HardResource"/>
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_C</name>
     </owl:NamedIndividual>
@@ -534,6 +541,15 @@
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_E">
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_E</name>
+    </owl:NamedIndividual>
+
+
+
+    <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#OKUMA_MP-46V -->
+
+    <owl:NamedIndividual rdf:about="&manuservice;OKUMA_MP-46V">
+        <rdf:type rdf:resource="&manuservice;MachiningResource"/>
+        <name rdf:datatype="&xsd;string">OKUMA_MP-46V</name>
     </owl:NamedIndividual>
     
 
