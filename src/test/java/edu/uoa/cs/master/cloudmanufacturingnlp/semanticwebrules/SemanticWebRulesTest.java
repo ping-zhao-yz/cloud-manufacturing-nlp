@@ -46,7 +46,7 @@ public abstract class SemanticWebRulesTest {
 	}
 
 	@Test
-	public void inference_ontologies_using_parsed_rules() {
+	public void testParsedSemanticRules() {
 
 		for (final Map<String, Map<String, Integer>> testCase : TestCases.cases) {
 			final String naturalLanguageRule = testCase.keySet().iterator().next();
