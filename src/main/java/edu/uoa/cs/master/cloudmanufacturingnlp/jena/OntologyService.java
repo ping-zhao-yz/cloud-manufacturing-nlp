@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,6 @@ package edu.uoa.cs.master.cloudmanufacturingnlp.jena;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -42,24 +41,24 @@ import edu.uoa.cs.master.cloudmanufacturingnlp.util.Tools;
 
 public class OntologyService {
 
-	private DictionaryService dictionaryService;
+	private final DictionaryService dictionaryService;
 
 	private InfModel infModel = null;
-	private List<String> ontProperties = new ArrayList<>();
-	private List<String> ontClasses = new ArrayList<>();
+	private final List<String> ontProperties = new ArrayList<>();
+	private final List<String> ontClasses = new ArrayList<>();
 
 	/*
-	 * e.g. manuservice:CompanyFAdd manuservice:country 'New Zealand'
-	 * <'New Zealand', <manuservice:country, manuservice:CompanyFAdd>, <manuservice:country, manuservice:CompanyBAdd>>
+	 * e.g. manuservice:CompanyFAdd manuservice:country 'New Zealand' <'New Zealand', <manuservice:country, manuservice:CompanyFAdd>,
+	 * <manuservice:country, manuservice:CompanyBAdd>>
 	 */
-	private Map<String, List<Map<String, String>>> statementTriplesIndexedByObjects = new HashMap<>();
+	private final Map<String, List<Map<String, String>>> statementTriplesIndexedByObjects = new HashMap<>();
 	/*
-	 * e.g. manuservice:CompanyF rdf:type manuservice:BusinessEntity
-	 * <rdf:type, <<manuservice:BusinessEntity, manuservice:CompanyF>, <manuservice:BusinessEntity, manuservice:CompanyB>>
+	 * e.g. manuservice:CompanyF rdf:type manuservice:BusinessEntity <rdf:type, <<manuservice:BusinessEntity, manuservice:CompanyF>,
+	 * <manuservice:BusinessEntity, manuservice:CompanyB>>
 	 */
-	private Map<String, List<Map<String, String>>> statementTriplesIndexedByPredicates = new HashMap<>();
+	private final Map<String, List<Map<String, String>>> statementTriplesIndexedByPredicates = new HashMap<>();
 
-	public OntologyService(DictionaryService dictionaryService) {
+	public OntologyService(final DictionaryService dictionaryService) {
 		this.dictionaryService = dictionaryService;
 
 		loadOntProperties();
@@ -70,14 +69,14 @@ public class OntologyService {
 		PrintUtil.registerPrefix(Constants.Ontology.PREFIX, Constants.Ontology.NS_MC);
 
 		// load ont properties
-		List<OntProperty> ontologyProperties = JenaOntModelManager.getInstance().loadOntProperties();
-		for (OntProperty ontProperty : ontologyProperties) {
+		final List<OntProperty> ontologyProperties = JenaOntModelManager.getInstance().loadOntProperties();
+		for (final OntProperty ontProperty : ontologyProperties) {
 			this.ontProperties.add(PrintUtil.print(ontProperty));
 		}
 
 		// load ont classess
-		List<OntClass> ontClassess = JenaOntModelManager.getInstance().loadOntClasses();
-		for (OntClass ontClasse : ontClassess) {
+		final List<OntClass> ontClassess = JenaOntModelManager.getInstance().loadOntClasses();
+		for (final OntClass ontClasse : ontClassess) {
 			this.ontClasses.add(PrintUtil.print(ontClasse));
 		}
 	}
@@ -87,19 +86,19 @@ public class OntologyService {
 		PrintUtil.registerPrefix(Constants.Ontology.PREFIX, Constants.Ontology.NS_MC);
 		this.infModel = JenaInfModelManager.getInstance().createInfModelByRule("");
 
-		for (StmtIterator it = this.infModel.listStatements(); it.hasNext();) {
-			Triple triple = it.next().asTriple();
+		for (final StmtIterator it = this.infModel.listStatements(); it.hasNext();) {
+			final Triple triple = it.next().asTriple();
 
-			String object = printLiteralLexicalForm(triple.getObject());
-			String predicate = PrintUtil.print(triple.getPredicate());
-			String subject = PrintUtil.print(triple.getSubject());
+			final String object = printLiteralLexicalForm(triple.getObject());
+			final String predicate = PrintUtil.print(triple.getPredicate());
+			final String subject = PrintUtil.print(triple.getSubject());
 
 			// load triples, indexed by object
 			List<Map<String, String>> predicateSubjects = this.statementTriplesIndexedByObjects.get(object);
 			if (predicateSubjects == null) {
 				predicateSubjects = new ArrayList<>();
 			}
-			Map<String, String> predicateSubject = new HashMap<>();
+			final Map<String, String> predicateSubject = new HashMap<>();
 			predicateSubject.put(predicate, subject);
 
 			predicateSubjects.add(predicateSubject);
@@ -110,7 +109,7 @@ public class OntologyService {
 			if (objectSubjects == null) {
 				objectSubjects = new ArrayList<>();
 			}
-			Map<String, String> objectSubject = new HashMap<>();
+			final Map<String, String> objectSubject = new HashMap<>();
 			objectSubject.put(object, subject);
 
 			objectSubjects.add(objectSubject);
@@ -118,7 +117,7 @@ public class OntologyService {
 		}
 	}
 
-	private String printLiteralLexicalForm(Node node) {
+	private String printLiteralLexicalForm(final Node node) {
 
 		if (node.isLiteral()) {
 			return node.getLiteralLexicalForm();
@@ -135,8 +134,8 @@ public class OntologyService {
 		return this.ontClasses;
 	}
 
-	public String lookupOntProperty(String inputProperty) {
-		for (String property : getOntProperties()) {
+	public String lookupOntProperty(final String inputProperty) {
+		for (final String property : getOntProperties()) {
 			if (this.dictionaryService.isSynonym(inputProperty, Tools.removePrefix(property))) {
 				return property;
 			}
@@ -144,8 +143,8 @@ public class OntologyService {
 		return null;
 	}
 
-	public String lookupOntClass(String inputClass) {
-		for (String ontClass : getOntClasses()) {
+	public String lookupOntClass(final String inputClass) {
+		for (final String ontClass : getOntClasses()) {
 			if (this.dictionaryService.isSynonym(inputClass, Tools.removePrefix(ontClass))) {
 				return ontClass;
 			}
@@ -153,10 +152,9 @@ public class OntologyService {
 		return null;
 	}
 
-	public List<Map<String, String>> lookupPredicateSubjectListByObject(String originalObject) {
+	public List<Map<String, String>> lookupPredicateSubjectListByObject(final String originalObject) {
 
-		for (Iterator<String> objects = this.statementTriplesIndexedByObjects.keySet().iterator(); objects.hasNext();) {
-			String object = objects.next();
+		for (final String object : this.statementTriplesIndexedByObjects.keySet()) {
 			if (this.dictionaryService.isSynonym(object, originalObject)) {
 				return this.statementTriplesIndexedByObjects.get(object);
 			}
@@ -165,11 +163,10 @@ public class OntologyService {
 		return new ArrayList<>();
 	}
 
-	public List<Map<String, String>> lookupObjectSubjectListByPredicate(String originalPredicate) {
+	public List<Map<String, String>> lookupObjectSubjectListByPredicate(final String originalPredicate) {
 		List<Map<String, String>> objectSubjects = null;
 
-		for (Iterator<String> predicates = this.statementTriplesIndexedByPredicates.keySet().iterator(); predicates.hasNext();) {
-			String predicate = predicates.next();
+		for (final String predicate : this.statementTriplesIndexedByPredicates.keySet()) {
 			if (predicate.equalsIgnoreCase(originalPredicate)) {
 				objectSubjects = this.statementTriplesIndexedByPredicates.get(predicate);
 			}
@@ -181,9 +178,8 @@ public class OntologyService {
 		return objectSubjects;
 	}
 
-	public String lookupObjectByNlObject(String originalObject) {
-		for (Iterator<String> objects = this.statementTriplesIndexedByObjects.keySet().iterator(); objects.hasNext();) {
-			String object = objects.next();
+	public String lookupObjectByNlObject(final String originalObject) {
+		for (final String object : this.statementTriplesIndexedByObjects.keySet()) {
 			if (this.dictionaryService.isSynonym(object, originalObject)) {
 				return object;
 			}
@@ -191,13 +187,12 @@ public class OntologyService {
 		return null;
 	}
 
-	public String lookupObjectByNlObjectAndReferenceObject(String originalObject, String referenceObject) {
+	public String lookupObjectByNlObjectAndReferenceObject(final String originalObject, final String referenceObject) {
 
-		String referenceRdfType = lookupReferenceRDFTypeBySubject(referenceObject);
+		final String referenceRdfType = lookupReferenceRDFTypeBySubject(referenceObject);
 
-		for (Iterator<String> objects = this.statementTriplesIndexedByObjects.keySet().iterator(); objects.hasNext();) {
-			String object = objects.next();
-			String object_local = Tools.removePrefix(object);
+		for (final String object : this.statementTriplesIndexedByObjects.keySet()) {
+			final String object_local = Tools.removePrefix(object);
 
 			if (Tools.doesMatch(object_local, originalObject)) {
 				if (isDesiredSubject(object_local, referenceObject, referenceRdfType)) {
@@ -209,14 +204,13 @@ public class OntologyService {
 		return null;
 	}
 
-	public Entry<String, String> lookupPredicateSubjectByObject(String object, String referenceSubject) {
+	public Entry<String, String> lookupPredicateSubjectByObject(final String object, final String referenceSubject) {
 
-		String referenceRdfType = lookupReferenceRDFTypeBySubject(referenceSubject);
+		final String referenceRdfType = lookupReferenceRDFTypeBySubject(referenceSubject);
 
-		for (Map<String, String> predicateSubjectMap : lookupPredicateSubjectListByObject(object)) {
-			for (Iterator<Entry<String, String>> it = predicateSubjectMap.entrySet().iterator(); it.hasNext();) {
-				Entry<String, String> entry = it.next();
-				String subject = Tools.removePrefix(entry.getValue());
+		for (final Map<String, String> predicateSubjectMap : lookupPredicateSubjectListByObject(object)) {
+			for (final Entry<String, String> entry : predicateSubjectMap.entrySet()) {
+				final String subject = Tools.removePrefix(entry.getValue());
 
 				if (isDesiredSubject(subject, referenceSubject, referenceRdfType)) {
 					return entry;
@@ -226,11 +220,11 @@ public class OntologyService {
 		return null;
 	}
 
-	private boolean isDesiredSubject(String subject, String referenceSubject, String referenceRdfType) {
+	private boolean isDesiredSubject(final String subject, final String referenceSubject, final String referenceRdfType) {
 
 		if (this.dictionaryService.isSynonym(subject, referenceSubject)) {
 			// further check if their rdf:type matches
-			String specificRdfType = lookupSpecificRDFTypeBySubject(subject);
+			final String specificRdfType = lookupSpecificRDFTypeBySubject(subject);
 			if (this.dictionaryService.isSynonym(specificRdfType, referenceRdfType)) {
 				return true;
 			}
@@ -238,12 +232,13 @@ public class OntologyService {
 		return false;
 	}
 
-	private String lookupReferenceRDFTypeBySubject(String referenceSubject) {
+	private String lookupReferenceRDFTypeBySubject(final String referenceSubject) {
 
-		for (Map<String, String> objectSubjectMap : this.statementTriplesIndexedByPredicates.get(Constants.Ontology.RDF_TYPE_USING_PREFIX)) {
+		for (final Map<String, String> objectSubjectMap : this.statementTriplesIndexedByPredicates
+				.get(Constants.Ontology.RDF_TYPE_USING_PREFIX)) {
 
-			for (Iterator<String> it = objectSubjectMap.keySet().iterator(); it.hasNext();) {
-				String rdfType = Tools.removePrefix(it.next());
+			for (final String string : objectSubjectMap.keySet()) {
+				final String rdfType = Tools.removePrefix(string);
 				if (this.dictionaryService.isSynonym(referenceSubject, rdfType)) {
 					return rdfType;
 				}
@@ -253,17 +248,25 @@ public class OntologyService {
 		return null;
 	}
 
-	private String lookupSpecificRDFTypeBySubject(String resourceString) {
-		Resource resource = this.infModel.getResource(Constants.Ontology.NS_MC + resourceString);
-		Property property = this.infModel.getProperty(Constants.Ontology.RDF_TYPE);
+	private String lookupSpecificRDFTypeBySubject(final String resourceString) {
+		final Resource resource = this.infModel.getResource(Constants.Ontology.NS_MC + resourceString);
+		final Property property = this.infModel.getProperty(Constants.Ontology.RDF_TYPE);
+		final StmtIterator stmtIt = this.infModel.listStatements(resource, property, (Resource) null);
 
-		StmtIterator stmtIt = this.infModel.listStatements(resource, property, (Resource) null);
-		return stmtIt.next().getObject().asResource().getLocalName();
+		while (stmtIt.hasNext()) {
+			final Resource objectResource = stmtIt.next().getObject().asResource();
+			if (objectResource.getNameSpace().equals(Constants.Ontology.NS_MC))
+			{
+				return objectResource.getLocalName();
+			}
+		}
+
+		return null;
 	}
 
-	public static void main(String[] args) {
-		OntologyService ontologyService = new OntologyService(new DictionaryService());
-		Entry<String, String> entry = ontologyService.lookupPredicateSubjectByObject("New Zealand", "company");
+	public static void main(final String[] args) {
+		final OntologyService ontologyService = new OntologyService(new DictionaryService());
+		final Entry<String, String> entry = ontologyService.lookupPredicateSubjectByObject("New Zealand", "company");
 		System.out.println((entry == null) ? "null" : entry.getKey() + " " + entry.getValue());
 	}
 }
