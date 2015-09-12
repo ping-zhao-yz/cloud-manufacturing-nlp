@@ -19,6 +19,8 @@
  */
 package edu.uoa.cs.master.cloudmanufacturingnlp.semanticwebrules.sparql;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Map;
 
 import com.hp.hpl.jena.query.Query;
@@ -53,6 +55,9 @@ public class SparqlTest extends SemanticWebRulesTest {
 
 		final ResultSet resultSet = queryExecution.execSelect();
 		ResultSetFormatter.out(System.out, resultSet, query);
+
+		final Integer expectedNumber = expectedValue.values().iterator().next();
+		assertThat(resultSet.getRowNumber()).isSameAs(expectedNumber);
 
 		queryExecution.close();
 	}
