@@ -102,8 +102,9 @@ public class Constants {
 		public static final String LOCAL_BASE_JAVA = "src/main/resources/resource/";
 
 		public static final String MC_LOCAL = LOCAL_BASE + "cloudontology.owl";
-		public static final String SYNONYM = LOCAL_BASE + "synonym.txt";
 		public static final String COUNTRY_CODE = LOCAL_BASE + "countrycode.txt";
+		public static final String WORDNET_PROPERTY = LOCAL_BASE + "file_properties.xml";
+		public static final String SYNONYM = LOCAL_BASE + "synonym.txt";
 	}
 
 	public interface ErrMsg {

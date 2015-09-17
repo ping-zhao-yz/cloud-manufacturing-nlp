@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,9 @@
  */
 package edu.uoa.cs.master.cloudmanufacturingnlp.dictionary;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,60 +31,74 @@ public class DictionaryService {
 
 	/**
 	 * e.g. with-5 vs. with
-	 * 
-	 * @param resource
-	 * @param originalString
+	 *
+	 * @param originalTerm
+	 * @param ontologyTerm
 	 * @return
 	 */
-	public boolean isSynonym(String resource, String originalString) {
+	public boolean isSynonym(final String originalTerm, final String ontologyTerm) {
 
 		// validation
-		if (StringUtils.isEmpty(resource) || StringUtils.isEmpty(originalString)) {
+		if (StringUtils.isEmpty(originalTerm) || StringUtils.isEmpty(ontologyTerm)) {
 			return false;
 		}
 
-		// directly match
-		String lowerCaseResource = Tools.lowerCaseString(resource);
-		String lowerCaseOriginalString = Tools.lowerCaseString(originalString);
-		if (lowerCaseResource.equalsIgnoreCase(lowerCaseOriginalString)) {
+		// literal match
+		final String lowerCaseOriginalTerm = Tools.lowerCaseString(originalTerm);
+		final String lowerCaseOntologyTerm = Tools.lowerCaseString(ontologyTerm);
+		if (doesLiteralMatch(lowerCaseOriginalTerm, lowerCaseOntologyTerm)) {
 			return true;
 		}
 
-		if (lowerCaseResource.contains(lowerCaseOriginalString) || lowerCaseOriginalString.contains(lowerCaseResource)) {
+		final String originalTermWithoutDashSuffix = Tools.removeDashSuffix(lowerCaseOriginalTerm);
+		final String ontologyTermWithoutDashSuffix = Tools.removeDashSuffix(lowerCaseOntologyTerm);
+		if (doesLiteralMatch(originalTermWithoutDashSuffix, ontologyTermWithoutDashSuffix)) {
 			return true;
 		}
 
-		// trim the suffix and match
-		String resourceWithoutDashSuffix = Tools.removeDashSuffix(lowerCaseResource);
-		String originalStringWithoutDashSuffix = Tools.removeDashSuffix(lowerCaseOriginalString);
-		if (resourceWithoutDashSuffix.equalsIgnoreCase(originalStringWithoutDashSuffix)) {
+		// WordNet synonym match
+		final Set<String> synonymSet = JwnlWordNet.getInstance().lookupSynonym(ontologyTermWithoutDashSuffix, null);
+		if (doesLiteralArrayMatch(originalTermWithoutDashSuffix, synonymSet)) {
 			return true;
 		}
 
-		if (resourceWithoutDashSuffix.contains(originalStringWithoutDashSuffix)
-				|| originalStringWithoutDashSuffix.contains(resourceWithoutDashSuffix)) {
+		// local synonym match
+		List<String> synonymList = LocalDictionary.getIntance().lookupSynonym(ontologyTermWithoutDashSuffix);
+		if (doesLiteralArrayMatch(originalTermWithoutDashSuffix, synonymList)) {
 			return true;
 		}
 
-		// lookup the synonym and match
-		if (doesSynonymMatch(resourceWithoutDashSuffix, originalStringWithoutDashSuffix)) {
-			return true;
-		}
-		if (doesSynonymMatch(originalStringWithoutDashSuffix, resourceWithoutDashSuffix)) {
+		synonymList = LocalDictionary.getIntance().lookupSynonym(originalTermWithoutDashSuffix);
+		if (doesLiteralArrayMatch(ontologyTermWithoutDashSuffix, synonymList)) {
 			return true;
 		}
 
 		return false;
 	}
 
-	private boolean doesSynonymMatch(String resource, String originalString) {
-		List<String> synonyms = Dictionary.getIntance().lookupSynonym(originalString);
+	/**
+	 * @param lowerCaseResource
+	 * @param lowerCaseOriginalString
+	 */
+	private boolean doesLiteralMatch(final String lowerCaseResource, final String lowerCaseOriginalString) {
+		if (lowerCaseResource.equalsIgnoreCase(lowerCaseOriginalString)) {
+			return true;
+		}
+		if (lowerCaseResource.contains(lowerCaseOriginalString) || lowerCaseOriginalString.contains(lowerCaseResource)) {
+			return true;
+		}
+		return false;
+	}
 
+	private boolean doesLiteralArrayMatch(final String resource, final Collection<String> synonyms) {
 		if (synonyms != null && !synonyms.isEmpty()) {
-			for (String synonym : synonyms) {
-				if (StringUtils.isBlank(synonym) || StringUtils.isBlank(resource)) {
-					continue;
+			for (final String synonym : synonyms) {
+				if (synonym.equalsIgnoreCase(resource)) {
+					return true;
 				}
+			}
+
+			for (final String synonym : synonyms) {
 				if ((synonym.contains(resource)) || resource.contains(synonym)) {
 					return true;
 				}
@@ -93,19 +109,19 @@ public class DictionaryService {
 
 	/**
 	 * Country name can be: NZ or New Zealand.
-	 * 
+	 *
 	 * @param name
 	 * @return
 	 */
-	public String getCountryName(String name) {
-		return Dictionary.getIntance().getCountryName(name);
+	public String getCountryName(final String name) {
+		return LocalDictionary.getIntance().getCountryName(name);
 	}
 
-	public static void main(String[] args) {
-		DictionaryService dictionaryService = new DictionaryService();
+	public static void main(final String[] args) {
+		final DictionaryService dictionaryService = new DictionaryService();
 
-		String originalString = "share";
-		String resource = "mcloud:hasAccess";
+		final String originalString = "share";
+		final String resource = "mcloud:hasAccess";
 
 		if (dictionaryService.isSynonym(originalString, resource)) {
 			System.out.println(originalString + " is a synonym of " + resource);

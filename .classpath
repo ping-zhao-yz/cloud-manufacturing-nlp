@@ -28,5 +28,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/jwnl.jar" sourcepath="/Users/pingz/Documents/software/setup/jwnl14-rc2.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

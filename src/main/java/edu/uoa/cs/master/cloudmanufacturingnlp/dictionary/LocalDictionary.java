@@ -27,20 +27,20 @@ import java.util.Map;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Tools;
 
-public class Dictionary {
+public class LocalDictionary {
 
 	private Map<String, List<String>> synonyms = new HashMap<>();
 	private Map<String, String> countryCodeToCountryMap = new HashMap<>();
 	private List<String> countryList = new ArrayList<>();
 
-	private static Dictionary dictionary = new Dictionary();
+	private static LocalDictionary dictionary = new LocalDictionary();
 
-	private Dictionary() {
+	private LocalDictionary() {
 		Tools.loadSynonyms(synonyms, Constants.FilePath.SYNONYM);
 		Tools.loadCountryCodes(countryCodeToCountryMap, countryList, Constants.FilePath.COUNTRY_CODE);
 	}
 
-	public static Dictionary getIntance() {
+	public static LocalDictionary getIntance() {
 		return dictionary;
 	}
 

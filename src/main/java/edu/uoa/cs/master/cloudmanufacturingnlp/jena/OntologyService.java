@@ -255,8 +255,7 @@ public class OntologyService {
 
 		while (stmtIt.hasNext()) {
 			final Resource objectResource = stmtIt.next().getObject().asResource();
-			if (objectResource.getNameSpace().equals(Constants.Ontology.NS_MC))
-			{
+			if (objectResource.getNameSpace().equals(Constants.Ontology.NS_MC)) {
 				return objectResource.getLocalName();
 			}
 		}
