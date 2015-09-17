@@ -33,7 +33,7 @@ public class LocalDictionary {
 	private Map<String, String> countryCodeToCountryMap = new HashMap<>();
 	private List<String> countryList = new ArrayList<>();
 
-	private static LocalDictionary dictionary = new LocalDictionary();
+	private static LocalDictionary instance = new LocalDictionary();
 
 	private LocalDictionary() {
 		Tools.loadSynonyms(synonyms, Constants.FilePath.SYNONYM);
@@ -41,7 +41,7 @@ public class LocalDictionary {
 	}
 
 	public static LocalDictionary getIntance() {
-		return dictionary;
+		return instance;
 	}
 
 	public List<String> lookupSynonym(String originalString) {
