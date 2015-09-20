@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 
-
 <!DOCTYPE rdf:RDF [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY v1 "http://purl.org/goodrelations/v1#" >
@@ -9,7 +8,6 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY manuservice "http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#" >
 ]>
-
 
 <rdf:RDF xmlns="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#"
      xml:base="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice"
@@ -22,7 +20,6 @@
     <owl:Ontology rdf:about="http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice"/>
     
 
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -31,14 +28,11 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#hasAccessTo -->
 
     <owl:ObjectProperty rdf:about="&manuservice;hasAccessTo"/>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#hasAddress -->
 
@@ -48,22 +42,16 @@
     </owl:ObjectProperty>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#hasResource -->
 
     <owl:ObjectProperty rdf:about="&manuservice;hasResource"/>
-    
-
-
-    <!-- 
+<!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Data properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    
 
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#city -->
@@ -74,7 +62,6 @@
     </owl:DatatypeProperty>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#country -->
 
     <owl:DatatypeProperty rdf:about="&manuservice;country">
@@ -82,7 +69,6 @@
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#creditGrade -->
 
@@ -92,14 +78,12 @@
     </owl:DatatypeProperty>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#entityType -->
 
     <owl:DatatypeProperty rdf:about="&manuservice;entityType">
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#name -->
 
@@ -113,8 +97,6 @@
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
-
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#yearsInOperation -->
 
     <owl:DatatypeProperty rdf:about="&manuservice;yearsInOperation">
@@ -123,7 +105,6 @@
     </owl:DatatypeProperty>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#zipCode -->
 
     <owl:DatatypeProperty rdf:about="&manuservice;zipCode">
@@ -131,7 +112,6 @@
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -142,25 +122,20 @@
      -->
 
     
-
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Address -->
 
     <owl:Class rdf:about="&manuservice;Address"/>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#BusinessEntity -->
 
     <owl:Class rdf:about="&manuservice;BusinessEntity"/>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Capability -->
 
     <owl:Class rdf:about="&manuservice;Capability"/>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ComputationalResource -->
 
@@ -169,22 +144,17 @@
     </owl:Class>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#DesignCapability -->
 
     <owl:Class rdf:about="&manuservice;DesignCapability">
         <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
     </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ExperimentationCapability -->
 
     <owl:Class rdf:about="&manuservice;ExperimentationCapability">
         <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
     </owl:Class>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#HardResource -->
 
@@ -193,14 +163,12 @@
     </owl:Class>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#KnowledgeResource -->
 
     <owl:Class rdf:about="&manuservice;KnowledgeResource">
         <rdfs:subClassOf rdf:resource="&manuservice;SoftResource"/>
     </owl:Class>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#MachiningResource -->
 
@@ -209,14 +177,12 @@
     </owl:Class>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ManagementCapability -->
 
     <owl:Class rdf:about="&manuservice;ManagementCapability">
         <rdfs:subClassOf rdf:resource="&manuservice;Capability"/>
     </owl:Class>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#MaterialResource -->
 
@@ -225,14 +191,12 @@
     </owl:Class>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#PersonnelResource -->
 
     <owl:Class rdf:about="&manuservice;PersonnelResource">
         <rdfs:subClassOf rdf:resource="&manuservice;SoftResource"/>
     </owl:Class>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#ProductionCapability -->
 
@@ -241,18 +205,15 @@
     </owl:Class>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Resource -->
 
     <owl:Class rdf:about="&manuservice;Resource"/>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#Service -->
 
     <owl:Class rdf:about="&manuservice;Service"/>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#SoftResource -->
 
@@ -261,14 +222,12 @@
     </owl:Class>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#SoftwareResource -->
 
     <owl:Class rdf:about="&manuservice;SoftwareResource">
         <rdfs:subClassOf rdf:resource="&manuservice;SoftResource"/>
     </owl:Class>
     
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -277,9 +236,7 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyA -->
 
@@ -293,8 +250,7 @@
         <hasResource rdf:resource="&manuservice;R_AutoCAD1_A"/>
         <hasResource rdf:resource="&manuservice;R_NXCNC1_A"/>
     </owl:NamedIndividual>
-    
-
+   
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyAAdd -->
 
@@ -305,7 +261,6 @@
         <country rdf:datatype="&xsd;string">New Zealand</country>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyB -->
 
@@ -321,7 +276,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyBAdd -->
 
     <owl:NamedIndividual rdf:about="&manuservice;CompanyBAdd">
@@ -331,7 +285,6 @@
         <city rdf:datatype="&xsd;string">Hangzhou</city>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyC -->
 
@@ -347,7 +300,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyCAdd -->
 
     <owl:NamedIndividual rdf:about="&manuservice;CompanyCAdd">
@@ -357,7 +309,6 @@
         <country rdf:datatype="&xsd;string">United States</country>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyD -->
 
@@ -373,7 +324,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyDAdd -->
 
     <owl:NamedIndividual rdf:about="&manuservice;CompanyDAdd">
@@ -383,7 +333,6 @@
         <country rdf:datatype="&xsd;string">New Zealand</country>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyE -->
 
@@ -400,7 +349,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyEAdd -->
 
     <owl:NamedIndividual rdf:about="&manuservice;CompanyEAdd">
@@ -409,9 +357,6 @@
         <city rdf:datatype="&xsd;string">Auckland</city>
         <country rdf:datatype="&xsd;string">New Zealand</country>
     </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyF -->
 
     <owl:NamedIndividual rdf:about="&manuservice;CompanyF">
@@ -423,9 +368,9 @@
         <hasAddress rdf:resource="&manuservice;CompanyFAdd"/>
         <hasResource rdf:resource="&manuservice;R_AutoCAD1_F"/>
         <hasResource rdf:resource="&manuservice;R_NXCNC1_F"/>
+        <hasResource rdf:resource="&manuservice;OKUMA_MP-46V"/>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#CompanyFAdd -->
 
@@ -437,7 +382,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_A -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_A">
@@ -448,7 +392,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_B -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_B">
@@ -458,7 +401,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_C -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_C">
@@ -466,8 +408,7 @@
         <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
         <name rdf:datatype="&xsd;string">R_AutoCAD1_C</name>
     </owl:NamedIndividual>
-    
-
+   
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_D -->
 
@@ -477,7 +418,6 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_E -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_E">
@@ -486,16 +426,14 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_AutoCAD1_F -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_AutoCAD1_F">
-    	<rdf:type rdf:resource="&manuservice;Resource"/>
+        <rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;SoftwareResource"/>
         <name rdf:datatype="&xsd;string">R_AutoCAD1_F</name>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_A -->
 
@@ -506,16 +444,14 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_B -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_B">
-        <rdf:type rdf:resource="&manuservice;Resource"/>
+        <rdf:type rdf:resource="&manuservice;HardResource"/>
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_B</name>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_C -->
 
@@ -524,17 +460,16 @@
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_C</name>
     </owl:NamedIndividual>
-    
-
+   
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_D -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_D">
+    	<rdf:type rdf:resource="&manuservice;Resource"/>
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_D</name>
     </owl:NamedIndividual>
     
-
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_E -->
 
@@ -542,7 +477,6 @@
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_E</name>
     </owl:NamedIndividual>
-
 
 
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#OKUMA_MP-46V -->
@@ -553,16 +487,13 @@
     </owl:NamedIndividual>
     
 
-
     <!-- http://www.semanticweb.org/yuqianlu/ontologies/2013/10/manuservice#R_NXCNC1_F -->
 
     <owl:NamedIndividual rdf:about="&manuservice;R_NXCNC1_F">
         <rdf:type rdf:resource="&manuservice;MachiningResource"/>
         <name rdf:datatype="&xsd;string">R_NXCNC1_F</name>
     </owl:NamedIndividual>
-</rdf:RDF>
-
+	</rdf:RDF>
 
 
 <!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
-

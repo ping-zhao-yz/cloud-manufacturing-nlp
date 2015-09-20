@@ -29,6 +29,30 @@ public class TestCases {
 	public static List<Map<String, Map<String, Integer>>> cases = new ArrayList<>();
 
 	static {
+		// testing data set
+		cases.add(createCasesMap("CompanyA shares soft resources with NZ-based companies.",
+				createExpectedResultMap("R_AutoCAD1_A", Integer.valueOf(4))));
+
+		cases.add(createCasesMap("CompanyB shares hard resources within its own company.",
+				createExpectedResultMap("R_NXCNC1_B", Integer.valueOf(1))));
+
+		cases.add(createCasesMap("CompanyC shares machining resources in the public cloud.",
+				createExpectedResultMap("R_NXCNC1_C", Integer.valueOf(6))));
+
+		cases.add(createCasesMap("CompanyC shares soft resources with companies having a credit rating higher than 6.5 (out of 10.0).",
+				createExpectedResultMap("R_AutoCAD1_C", Integer.valueOf(3))));
+
+		cases.add(createCasesMap(
+				"CompanyD shares resources with specific companies, i.e., Company B and F;",
+				createExpectedResultMap("R_NXCNC1_D", Integer.valueOf(2))));
+
+		cases.add(createCasesMap("CompanyE shares software resources with companies in operation for more than 6 years.",
+				createExpectedResultMap("R_AutoCAD1_E", Integer.valueOf(4))));
+
+		cases.add(createCasesMap("CompanyF shares OKUMA MP-46V with private limited companies.",
+				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(2))));
+
+		// training data set
 		cases.add(createCasesMap("The CompanyA shares resources within its own company.",
 				createExpectedResultMap("R_AutoCAD1_A", Integer.valueOf(1))));
 
