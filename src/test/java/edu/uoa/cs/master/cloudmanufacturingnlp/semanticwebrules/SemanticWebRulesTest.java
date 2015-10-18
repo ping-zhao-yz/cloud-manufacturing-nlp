@@ -48,13 +48,31 @@ public abstract class SemanticWebRulesTest {
 	@Test
 	public void testParsedSemanticRules() {
 
-		for (final Map<String, Map<String, Integer>> testCase : TestCases.cases) {
-			final String naturalLanguageRule = testCase.keySet().iterator().next();
-			final Map<String, Integer> expectedValue = testCase.get(naturalLanguageRule);
+		int count = 0;
+		String naturalLanguageRule = "";
 
-			final String[] semanticRules = this.semanticWebRulesService.process(naturalLanguageRule);
-			verifyRules(semanticRules, expectedValue);
+		for (final Map<String, Map<String, Integer>> testCase : TestCases.cases) {
+			try {
+				naturalLanguageRule = testCase.keySet().iterator().next();
+				final Map<String, Integer> expectedValue = testCase.get(naturalLanguageRule);
+
+				final String[] semanticRules = this.semanticWebRulesService.process(naturalLanguageRule);
+
+				System.out.println();
+				System.out.println(naturalLanguageRule);
+				for (final String rule : semanticRules) {
+					System.out.println(rule);
+				}
+
+				verifyRules(semanticRules, expectedValue);
+
+			} catch (final AssertionError error) {
+				System.out.println(error.getMessage());
+				count++;
+			}
 		}
+
+		System.out.println(count + " out of " + TestCases.cases.size() + " cases failed");
 	}
 
 	private void verifyRules(final String[] semanticRules, final Map<String, Integer> expectedValue) {

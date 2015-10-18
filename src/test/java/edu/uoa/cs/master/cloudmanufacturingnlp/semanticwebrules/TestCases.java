@@ -43,17 +43,15 @@ public class TestCases {
 				"CompanyA shares resources with private limited companies having a credit rating higher than 7.0 (out of 10.0)",
 				createExpectedResultMap("R_AutoCAD1_A", Integer.valueOf(0))));
 		cases.add(createCasesMap(
-				"CompanyC shares machining resources with NZ-based company having a credit rating higher than 6.0 (out of 10.0)",
+				"CompanyC shares machining resources with NZ-based companies having a credit rating higher than 6.0 (out of 10.0)",
 				createExpectedResultMap("R_NXCNC1_C", Integer.valueOf(2))));
-		cases.add(createCasesMap("CompanyE shares OKUMA MP-46V with NZ-based company",
+		cases.add(createCasesMap("CompanyE shares OKUMA MP-46V with NZ-based companies",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(4))));
 		cases.add(createCasesMap(
 				"CompanyA shares machining resources with private limited companies having a credit rating higher than 8.0 (out of 10.0)",
 				createExpectedResultMap("R_NXCNC1_A", Integer.valueOf(0))));
-		cases.add(createCasesMap("CompanyF shares resources with NZ-based company in operation for more than 7 years",
-				createExpectedResultMap("R_AutoCAD1_F", Integer.valueOf(2))));
-		cases.add(createCasesMap("CompanyD shares resources with NZ-based company in operation for more than 7 years",
-				createExpectedResultMap("R_AutoCAD1_D", Integer.valueOf(2))));
+		cases.add(createCasesMap("CompanyD shares resources with NZ-based companies in operation for more than 7 years",
+				createExpectedResultMap("R_AutoCAD1_D", Integer.valueOf(3))));
 		cases.add(createCasesMap("CompanyB shares OKUMA MP-46V with private limited companies",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(2))));
 
@@ -74,12 +72,12 @@ public class TestCases {
 		cases.add(createCasesMap("CompanyF shares soft resources with companies having a credit rating higher than 6.0 (out of 10.0)",
 				createExpectedResultMap("R_AutoCAD1_F", Integer.valueOf(4))));
 		cases.add(createCasesMap("CompanyC shares soft resources with the public cloud",
-				createExpectedResultMap("R_AutoCAD1_C", Integer.valueOf(3))));
+				createExpectedResultMap("R_AutoCAD1_C", Integer.valueOf(6))));
 		cases.add(createCasesMap("CompanyF shares machining resources with specific companies, i.e., Company A, B, and C;",
 				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(3))));
-		cases.add(createCasesMap("CompanyB shares resources with NZ-based company having a credit rating higher than 5.0 (out of 10.0)",
-				createExpectedResultMap("R_AutoCAD1_B", Integer.valueOf(4))));
 
+		cases.add(createCasesMap("CompanyB shares resources with NZ-based companies having a credit rating higher than 5.0 (out of 10.0)",
+				createExpectedResultMap("R_AutoCAD1_B", Integer.valueOf(4))));
 		cases.add(createCasesMap("CompanyE shares soft resources with companies having a credit rating higher than 5.0 (out of 10.0)",
 				createExpectedResultMap("R_AutoCAD1_E", Integer.valueOf(6))));
 		cases.add(createCasesMap("CompanyA shares hard resources with private limited companies in operation for more than 5 years",
@@ -95,19 +93,17 @@ public class TestCases {
 		cases.add(createCasesMap(
 				"CompanyE shares hard resources with private limited companies having a credit rating higher than 8.0 (out of 10.0)",
 				createExpectedResultMap("R_NXCNC1_E", Integer.valueOf(0))));
-		cases.add(createCasesMap("CompanyF shares OKUMA MP-46V with NZ-based company in operation for more than 8 years",
+		cases.add(createCasesMap("CompanyF shares OKUMA MP-46V with NZ-based companies in operation for more than 8 years",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(2))));
 		cases.add(createCasesMap("CompanyF shares hard resources with its own company",
 				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(1))));
 		cases.add(createCasesMap(
 				"CompanyB shares soft resources with private limited companies having a credit rating higher than 6.0 (out of 10.0)",
 				createExpectedResultMap("R_AutoCAD1_B", Integer.valueOf(1))));
+
 		cases.add(createCasesMap(
 				"CompanyD shares machining resources with private limited companies having a credit rating higher than 8.0 (out of 10.0)",
 				createExpectedResultMap("R_NXCNC1_D", Integer.valueOf(0))));
-
-		cases.add(createCasesMap("CompanyD shares machining resources with companies in operation for more than 5 years",
-				createExpectedResultMap("R_NXCNC1_D", Integer.valueOf(4))));
 		cases.add(createCasesMap("CompanyA shares resources with private limited companies in operation for more than 8 years",
 				createExpectedResultMap("R_AutoCAD1_A", Integer.valueOf(1))));
 		cases.add(createCasesMap("CompanyC shares soft resources with its own company",
@@ -115,23 +111,25 @@ public class TestCases {
 		cases.add(createCasesMap("CompanyE shares OKUMA MP-46V with private limited companies",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(2))));
 		cases.add(
-				createCasesMap("CompanyC shares hard resources with NZ-based company having a credit rating higher than 6.0 (out of 10.0)",
+				createCasesMap(
+						"CompanyC shares hard resources with NZ-based companies having a credit rating higher than 6.0 (out of 10.0)",
 						createExpectedResultMap("R_NXCNC1_C", Integer.valueOf(2))));
 		cases.add(
-				createCasesMap("CompanyD shares soft resources with NZ-based company having a credit rating higher than 6.0 (out of 10.0)",
+				createCasesMap(
+						"CompanyD shares soft resources with NZ-based companies having a credit rating higher than 6.0 (out of 10.0)",
 						createExpectedResultMap("R_AutoCAD1_D", Integer.valueOf(2))));
 		cases.add(createCasesMap("CompanyA shares OKUMA MP-46V with companies having a credit rating higher than 5.0 (out of 10.0)",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(6))));
-		cases.add(createCasesMap("CompanyE shares resources with NZ-based company in operation for more than 6 years",
+		cases.add(createCasesMap("CompanyE shares resources with NZ-based companies in operation for more than 6 years",
 				createExpectedResultMap("R_AutoCAD1_E", Integer.valueOf(3))));
 		cases.add(createCasesMap(
 				"CompanyC shares resources with private limited companies having a credit rating higher than 8.0 (out of 10.0)",
 				createExpectedResultMap("R_AutoCAD1_C", Integer.valueOf(0))));
 		cases.add(createCasesMap("CompanyF shares resources with private limited companies in operation for more than 7 years",
 				createExpectedResultMap("R_AutoCAD1_F", Integer.valueOf(2))));
+
 		cases.add(createCasesMap("CompanyC shares soft resources with specific companies, i.e., Company A and B;",
 				createExpectedResultMap("R_AutoCAD1_C", Integer.valueOf(2))));
-
 		cases.add(createCasesMap("CompanyE shares hard resources with companies in operation for more than 5 years",
 				createExpectedResultMap("R_NXCNC1_E", Integer.valueOf(4))));
 		cases.add(createCasesMap(
@@ -140,30 +138,28 @@ public class TestCases {
 		cases.add(createCasesMap("CompanyF shares hard resources with private limited companies",
 				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(2))));
 		cases.add(
-				createCasesMap("CompanyE shares hard resources with NZ-based company having a credit rating higher than 8.0 (out of 10.0)",
+				createCasesMap(
+						"CompanyE shares hard resources with NZ-based companies having a credit rating higher than 8.0 (out of 10.0)",
 						createExpectedResultMap("R_NXCNC1_E", Integer.valueOf(1))));
 		cases.add(createCasesMap("CompanyE shares soft resources with its own company",
 				createExpectedResultMap("R_AutoCAD1_E", Integer.valueOf(1))));
-		cases.add(createCasesMap("CompanyF shares machining resources with NZ-based company in operation for more than 6 years",
-				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(3))));
 		cases.add(createCasesMap("CompanyB shares OKUMA MP-46V with private limited companies in operation for more than 8 years",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(1))));
 		cases.add(
-				createCasesMap("CompanyB shares hard resources with NZ-based company having a credit rating higher than 5.0 (out of 10.0)",
+				createCasesMap(
+						"CompanyB shares hard resources with NZ-based companies having a credit rating higher than 5.0 (out of 10.0)",
 						createExpectedResultMap("R_NXCNC1_B", Integer.valueOf(4))));
 		cases.add(createCasesMap("CompanyF shares hard resources with private limited companies in operation for more than 6 years",
 				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(2))));
 		cases.add(createCasesMap(
 				"CompanyD shares OKUMA MP-46V with private limited companies having a credit rating higher than 6.0 (out of 10.0)",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(1))));
+
 		cases.add(createCasesMap("CompanyC shares OKUMA MP-46V with the public cloud",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(6))));
-
 		cases.add(createCasesMap("CompanyD shares OKUMA MP-46V with companies having a credit rating higher than 7.0 (out of 10.0)",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(3))));
-		cases.add(createCasesMap("CompanyB shares machining resources with private limited companies in operation for more than 8 years",
-				createExpectedResultMap("R_NXCNC1_B", Integer.valueOf(1))));
-		cases.add(createCasesMap("CompanyD shares resources with NZ-based company ",
+		cases.add(createCasesMap("CompanyD shares resources with NZ-based companies ",
 				createExpectedResultMap("R_AutoCAD1_D", Integer.valueOf(4))));
 		cases.add(createCasesMap("CompanyF shares OKUMA MP-46V with specific companies, i.e., Company A, B, and C;",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(3))));
@@ -171,17 +167,28 @@ public class TestCases {
 				createExpectedResultMap("R_NXCNC1_C", Integer.valueOf(3))));
 		cases.add(createCasesMap("CompanyA shares hard resources with companies in operation for more than 8 years",
 				createExpectedResultMap("R_NXCNC1_A", Integer.valueOf(3))));
-		cases.add(createCasesMap("CompanyB shares OKUMA MP-46V with NZ-based company",
+		cases.add(createCasesMap("CompanyB shares OKUMA MP-46V with NZ-based companies",
 				createExpectedResultMap("OKUMA_MP-46V", Integer.valueOf(4))));
 		cases.add(createCasesMap(
-				"CompanyD shares machining resources with NZ-based company having a credit rating higher than 6.0 (out of 10.0)",
+				"CompanyD shares machining resources with NZ-based companies having a credit rating higher than 6.0 (out of 10.0)",
 				createExpectedResultMap("R_NXCNC1_D", Integer.valueOf(2))));
 		cases.add(createCasesMap("CompanyF shares machining resources with private limited companies",
 				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(2))));
 		cases.add(createCasesMap("CompanyC shares resources with private limited companies in operation for more than 6 years",
 				createExpectedResultMap("R_AutoCAD1_C", Integer.valueOf(2))));
-		cases.add(createCasesMap("CompanyB shares resources with NZ-based company in operation for more than 7 years",
+
+		cases.add(createCasesMap("CompanyB shares resources with NZ-based companies in operation for more than 7 years",
 				createExpectedResultMap("R_AutoCAD1_B", Integer.valueOf(3))));
+		cases.add(createCasesMap("CompanyF shares resources with NZ-based companies in operation for more than 7 years",
+				createExpectedResultMap("R_AutoCAD1_F", Integer.valueOf(3))));
+
+		// failure cases
+		cases.add(createCasesMap("CompanyD shares machining resources with companies in operation for more than 5 years",
+				createExpectedResultMap("R_NXCNC1_D", Integer.valueOf(4))));
+		cases.add(createCasesMap("CompanyF shares machining resources with NZ-based companies in operation for more than 6 years",
+				createExpectedResultMap("R_NXCNC1_F", Integer.valueOf(3))));
+		cases.add(createCasesMap("CompanyB shares machining resources with private limited companies in operation for more than 8 years",
+				createExpectedResultMap("R_NXCNC1_B", Integer.valueOf(1))));
 	}
 
 	// manual testing data set
