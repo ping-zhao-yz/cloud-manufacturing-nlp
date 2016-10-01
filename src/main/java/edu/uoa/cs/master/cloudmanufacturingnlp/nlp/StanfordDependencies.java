@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,7 +29,7 @@ import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.process.Tokenizer;
 import edu.stanford.nlp.process.TokenizerFactory;
-import edu.stanford.nlp.trees.EnglishGrammaticalStructure;
+import edu.stanford.nlp.trees.GrammaticalStructure;
 import edu.stanford.nlp.trees.GrammaticalStructureFactory;
 import edu.stanford.nlp.trees.PennTreebankLanguagePack;
 import edu.stanford.nlp.trees.Tree;
@@ -38,12 +38,16 @@ import edu.stanford.nlp.trees.TypedDependency;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 
 public class StanfordDependencies {
-	private TreebankLanguagePack tlp = new PennTreebankLanguagePack();
-	private GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
-	private TokenizerFactory<? extends HasWord> tokenizerFactory = tlp.getTokenizerFactory();
-
-	private LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz",
+	// lexical parse
+	private final LexicalizedParser lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz",
 			"-maxLength", "80", "-retainTmpSubcategories");
+
+	// annotate Stanford dependencies based on lexical parsing results
+	private final TreebankLanguagePack tlp = new PennTreebankLanguagePack();
+	private final GrammaticalStructureFactory gsf = this.tlp.grammaticalStructureFactory();
+
+	// tokenize the sentence into char set
+	private final TokenizerFactory<? extends HasWord> tokenizerFactory = this.tlp.getTokenizerFactory();
 
 	/** singleton */
 	private static StanfordDependencies instance = new StanfordDependencies();
@@ -64,31 +68,32 @@ public class StanfordDependencies {
 	 * <p>
 	 * An output example is:shares-3={companyC-2=nsubj}
 	 * </p>
-	 * 
+	 *
 	 * @param triples
 	 * @param naturalLanguageRule
 	 * @return
 	 */
-	public String parseNaturalLanguage(Map<String, Map<String, String>> triples, String naturalLanguageRule) {
+	public String parseNaturalLanguage(final Map<String, Map<String, String>> triples, final String naturalLanguageRule) {
 		String action = null;
 
-		Tokenizer<? extends HasWord> toke = tokenizerFactory.getTokenizer(new StringReader(naturalLanguageRule));
-		List<? extends HasWord> sentence = toke.tokenize();
+		final Tokenizer<? extends HasWord> token = this.tokenizerFactory.getTokenizer(new StringReader(naturalLanguageRule));
+		final List<? extends HasWord> sentence = token.tokenize();
 
-		Tree parse = lp.parse(sentence);
-		EnglishGrammaticalStructure gs = (EnglishGrammaticalStructure) gsf.newGrammaticalStructure(parse);
+		final Tree parse = this.lp.parse(sentence);
+		final GrammaticalStructure gs = this.gsf.newGrammaticalStructure(parse);
 
-		Collection<TypedDependency> tdl = gs.typedDependencies();
+		// final Collection<TypedDependency> tdl = gs.typedDependencies();
+		final Collection<TypedDependency> tdl = gs.typedDependenciesCCprocessed();
 
-		for (TypedDependency dependency : tdl) {
-			String gov = dependency.gov().toString();
-			String reln = dependency.reln().toString();
-			String dep = dependency.dep().toString();
+		for (final TypedDependency dependency : tdl) {
+			final String gov = dependency.gov().toString();
+			final String reln = dependency.reln().toString();
+			final String dep = dependency.dep().toString();
 
 			if (triples.containsKey(gov)) {
 				triples.get(gov).put(dep, reln);
 			} else {
-				Map<String, String> triple = new HashMap<String, String>();
+				final Map<String, String> triple = new HashMap<String, String>();
 
 				triple.put(dep, reln);
 				triples.put(gov, triple);
@@ -102,8 +107,8 @@ public class StanfordDependencies {
 		return action;
 	}
 
-	public static void main(String[] args) {
-		Map<String, Map<String, String>> triples = new HashMap<String, Map<String, String>>();
+	public static void main(final String[] args) {
+		final Map<String, Map<String, String>> triples = new HashMap<String, Map<String, String>>();
 
 		// StanfordDependencies.getInstance().parseNaturalLanguage(
 		// triples, "The companyA shares resources within its own company.");

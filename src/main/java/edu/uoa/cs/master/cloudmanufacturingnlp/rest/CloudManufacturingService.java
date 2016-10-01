@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,23 +41,23 @@ public class CloudManufacturingService {
 	@GET
 	@Path("generate-jena-rule-html")
 	@Produces(MediaType.TEXT_HTML)
-	public String generateJenaRuleHtml(@QueryParam("rule") String naturalLanguageRule) {
+	public String generateJenaRuleHtml(@QueryParam("rule") final String naturalLanguageRule) {
 
 		String jenaRuleText = generateJenaRuleText(naturalLanguageRule);
 		if (jenaRuleText == null) {
 			jenaRuleText = "There is no Jena rule generated due to the server error!";
 		}
 
-		String jenaRule = Tools.replaceSpecialCharacters(jenaRuleText);
+		final String jenaRule = Tools.replaceSpecialCharacters(jenaRuleText);
 		return generateResponse(generateJenaResponse(naturalLanguageRule, jenaRule));
 	}
 
 	@GET
 	@Path("generate-jena-rule-text")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String generateJenaRuleText(@QueryParam("rule") String naturalLanguageRule) {
+	public String generateJenaRuleText(@QueryParam("rule") final String naturalLanguageRule) {
 
-		String[] jenaRules = new SemanticWebRulesService().process(naturalLanguageRule);
+		final String[] jenaRules = new SemanticWebRulesService().process(naturalLanguageRule);
 		if (jenaRules != null) {
 			JenaRulesDAO.getInstance().insertRule(jenaRules);
 			return Tools.getContentFromArray(jenaRules);
@@ -65,14 +65,14 @@ public class CloudManufacturingService {
 		return null;
 	}
 
-	private String generateJenaResponse(String naturalLanguageRule, String jenaRule) {
+	private String generateJenaResponse(final String naturalLanguageRule, final String jenaRule) {
 		return "<div>The original natural language rule is:<br/>"
 				+ naturalLanguageRule + "<br/><br/>"
 				+ "The generated Jena rule is:<br/>"
 				+ jenaRule + "</div>";
 	}
 
-	private String generateResponse(String responseContent) {
+	private String generateResponse(final String responseContent) {
 		return "<html> <head><title>Cloud Manufacturing Services</title></head> "
 				+ "<body> <h1>Jena rules auto generation</h1> "
 				+ responseContent + "</body></html>";

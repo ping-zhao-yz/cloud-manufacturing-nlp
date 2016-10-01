@@ -2,6 +2,7 @@
 /////// Domain specific synonym dictionary: Machinery ///////
 /////////////////////////////////////////////////////////////
 shares: access
+share: access
 
 BusinessEntity: company, companies
 

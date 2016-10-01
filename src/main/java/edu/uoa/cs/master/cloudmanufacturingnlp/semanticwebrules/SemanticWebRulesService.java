@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,17 +34,18 @@ public class SemanticWebRulesService {
 
 	/**
 	 * Parse the natural language rule and use the parsed elements/tags to generate the Jena rule.
-	 * 
+	 *
 	 * @param naturalLanguageRule
 	 * @return String[]
 	 */
-	public String[] process(String naturalLanguageRule) {
+	public String[] process(final String naturalLanguageRule) {
 
-		String preprocessedRule = preprocessRule(naturalLanguageRule);
+		final String preprocessedRule = preprocessRule(naturalLanguageRule);
 
 		// get the triples of a natural sentence in the format <gov, <dep, reln>>, e.g. shares-3={companyC-2=nsubj}
-		Map<String, Map<String, String>> triples = new HashMap<String, Map<String, String>>();
+		final Map<String, Map<String, String>> triples = new HashMap<String, Map<String, String>>();
 		this.action = StanfordDependencies.getInstance().parseNaturalLanguage(triples, preprocessedRule);
+		// this.action = StanfordDependencies.getInstance().parseNaturalLanguage(triples, naturalLanguageRule);
 
 		if (isParsedLanguageValid()) {
 			return new JenaRulesProcessor(triples, this.action).assembleRule();
@@ -54,17 +55,16 @@ public class SemanticWebRulesService {
 	}
 
 	/**
-	 * Standardize the input natural language rule.
-	 * 1. Add "." at the end.
-	 * "CompanyA shares resources within its own company" => "CompanyA shares resources within its own company."
-	 * 
-	 * 2. Add "The" at the beginning
-	 * "CompanyA shares resources within its own company." => "The CompanyA shares resources within its own company."
-	 * 
+	 * Standardize the input natural language rule. 1. Add "." at the end. "CompanyA shares resources within its own company" =>
+	 * "CompanyA shares resources within its own company."
+	 *
+	 * 2. Add "The" at the beginning "CompanyA shares resources within its own company." =>
+	 * "The CompanyA shares resources within its own company."
+	 *
 	 * @param naturalLanguageRule
 	 * @return
 	 */
-	private String preprocessRule(String naturalLanguageRule) {
+	private String preprocessRule(final String naturalLanguageRule) {
 
 		String preprocessedRule = naturalLanguageRule.trim();
 
@@ -88,7 +88,7 @@ public class SemanticWebRulesService {
 
 	/**
 	 * Verify the input rule by checking the gov of nsubj, i.e. action.
-	 * 
+	 *
 	 * @param action
 	 * @param triples
 	 * @return
@@ -103,7 +103,7 @@ public class SemanticWebRulesService {
 		return true;
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		// passed
 		// String[] jenaRule =
 		// SemanticWebRulesService.getInstance().process("The companyA shares resources within its own company.");
@@ -118,23 +118,26 @@ public class SemanticWebRulesService {
 		//
 		// passed
 		// String[] jenaRule =
-		// SemanticWebRulesService.getInstance().process("The companyC shares hard resources with specific companies, i.e., companyA, companyB and companyE;");
+		// SemanticWebRulesService.getInstance().process("The companyC shares hard resources with specific companies, i.e., companyA,
+		// companyB and companyE;");
 		//
 		// passed
 		// String[] jenaRule =
-		// SemanticWebRulesService.getInstance().process("The companyD shares machining resources with companies having an credit rating higher than 8.0;");
+		// SemanticWebRulesService.getInstance().process("The companyD shares machining resources with companies having an credit rating
+		// higher than 8.0;");
 		// String[] jenaRule =
-		// SemanticWebRulesService.getInstance().process("The companyD shares machining resources with companies having an credit rating higher than 8.0 (out of 10.0);");
+		// SemanticWebRulesService.getInstance().process("The companyD shares machining resources with companies having an credit rating
+		// higher than 8.0 (out of 10.0);");
 
 		// passed
 		// String[] jenaRule =
 		// SemanticWebRulesService.getInstance().process("The companyE shares OKUMA MP-46V within the public cloud.");
 		//
 		// passed
-		String[] jenaRule = new SemanticWebRulesService().process(
+		final String[] jenaRule = new SemanticWebRulesService().process(
 				"The companyF shares resources with private limited companies in operation for more than 10 years.");
 
-		for (String rule : jenaRule) {
+		for (final String rule : jenaRule) {
 			System.out.println(rule);
 		}
 	}

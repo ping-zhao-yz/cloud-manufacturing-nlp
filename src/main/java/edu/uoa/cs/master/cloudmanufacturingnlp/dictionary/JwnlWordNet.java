@@ -161,7 +161,7 @@ public class JwnlWordNet {
 		final JwnlWordNet jwnlWordNet = JwnlWordNet.getInstance();
 
 		// lookup synset through senses
-		final IndexWordSet indexWordSet = jwnlWordNet.lookupSynsetThroughSenses("shares");
+		final IndexWordSet indexWordSet = jwnlWordNet.lookupSynsetThroughSenses("part");
 		System.out.println(indexWordSet.getSenseCount(POS.NOUN));
 		System.out.println(indexWordSet.getSenseCount(POS.VERB));
 

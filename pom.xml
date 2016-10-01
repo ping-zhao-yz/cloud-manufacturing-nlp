@@ -15,20 +15,31 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.2.Final</version>
+		</dependency>
+
+		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
-			<version>3.4.1</version>
+			<version>3.5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
-			<version>3.4.1</version>
+			<version>3.5.2</version>
 			<classifier>models</classifier>
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-parser</artifactId>
-			<version>3.4.1</version>
+			<version>3.5.2</version>
 		</dependency>
 
 		<dependency>
@@ -64,8 +75,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 
@@ -81,9 +92,14 @@
 						</resource>
 
 						<!-- the following is only used when relative paths are used -->
-						<!-- <resource> <directory>src/main/resources</directory> <targetPath>/</targetPath> 
-							</resource> <resource> <directory>src/main/resources</directory> <targetPath>WEB-INF</targetPath> 
-							</resource> -->
+						<resource>
+							<directory>src/main/resources</directory>
+							<targetPath>/</targetPath>
+						</resource>
+						<resource>
+							<directory>src/main/resources</directory>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
 
 					</webResources>
 				</configuration>
