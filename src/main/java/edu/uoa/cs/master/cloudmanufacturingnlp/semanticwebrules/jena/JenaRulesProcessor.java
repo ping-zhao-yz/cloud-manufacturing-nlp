@@ -61,8 +61,8 @@ public class JenaRulesProcessor {
 	 * <pre>
 	 * 	Company-B	Share resources with NZ-based companies
 	 * 	=>
-	 * 	[(?x cm:have_access_to ?y) <- (?x rdf:type gr:Organization), (?x gr:location ?z), (?z cm:country ?cnt), equal(?cnt, “New Zealand”),
-	 * 								  (?org cm:hasRes ?y), (?org gr:name ?n), equal(?n, “B”)]
+	 * 	[(?x cm:have_access_to ?y) <- (?x rdf:type gr:Organization), (?x gr:location ?z), (?z cm:country ?cnt), equal(?cnt, "New Zealand"),
+	 * 								  (?org cm:hasRes ?y), (?org gr:name ?n), equal(?n, "B")]
 	 * </pre>
 	 *
 	 * @return String[]
@@ -110,13 +110,13 @@ public class JenaRulesProcessor {
 	/**
 	 * Assemble the body terms (premises) of Jena rule.
 	 *
-	 * e.g. (?x rdf:type gr:Organization), (?x gr:location ?z), (?z cm:country ?cnt), equal(?cnt, “New Zealand”), (?org cm:hasRes ?y), (?org
-	 * gr:name ?n), equal(?n, “B”)
+	 * e.g. (?x rdf:type gr:Organization), (?x gr:location ?z), (?z cm:country ?cnt), equal(?cnt, "New Zealand"), (?org cm:hasRes ?y), (?org
+	 * gr:name ?n), equal(?n, "B")
 	 *
 	 */
 	private void assembleBodyTerms() {
 
-		// who has resource, e.g. (?org cm:hasRes ?y), (?org gr:name ?n), equal(?n, “B”)
+		// who has resource, e.g. (?org cm:hasRes ?y), (?org gr:name ?n), equal(?n, "B")
 		this.jenaRulesBuilder.withResourceOwner(Tools.removeDashSuffix(this.subject));
 
 		// the type of resource
