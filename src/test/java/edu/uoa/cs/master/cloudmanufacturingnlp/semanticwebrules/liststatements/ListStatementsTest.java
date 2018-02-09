@@ -25,7 +25,7 @@ import java.util.Map;
 
 import com.hp.hpl.jena.rdf.model.InfModel;
 
-import edu.uoa.cs.master.cloudmanufacturingnlp.jena.JenaInfModelManager;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.ontology.JenaInfModelManager;
 import edu.uoa.cs.master.cloudmanufacturingnlp.semanticwebrules.SemanticWebRulesTest;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 

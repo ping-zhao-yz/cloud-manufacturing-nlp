@@ -13,7 +13,7 @@
   	
   	<init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
-      <param-value>edu.uoa.cs.master.cloudmanufacturingnlp.rest</param-value>
+      <param-value>edu.uoa.cs.master.cloudmanufacturingnlp.resource</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

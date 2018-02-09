@@ -29,7 +29,8 @@ import org.junit.Test;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.util.PrintUtil;
 
-import edu.uoa.cs.master.cloudmanufacturingnlp.jena.JenaInfModelManager;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.ontology.JenaInfModelManager;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.semanticwebrules.SemanticWebRulesService;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 
 /**

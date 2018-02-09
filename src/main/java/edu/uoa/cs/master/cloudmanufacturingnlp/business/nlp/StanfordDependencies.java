@@ -17,7 +17,7 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.nlp;
+package edu.uoa.cs.master.cloudmanufacturingnlp.business.nlp;
 
 import java.io.StringReader;
 import java.util.Collection;

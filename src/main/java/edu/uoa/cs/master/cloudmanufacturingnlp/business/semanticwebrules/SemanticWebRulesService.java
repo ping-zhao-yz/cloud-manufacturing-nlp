@@ -17,15 +17,15 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.semanticwebrules;
+package edu.uoa.cs.master.cloudmanufacturingnlp.business.semanticwebrules;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import edu.uoa.cs.master.cloudmanufacturingnlp.nlp.StanfordDependencies;
-import edu.uoa.cs.master.cloudmanufacturingnlp.semanticwebrules.jena.JenaRulesProcessor;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.nlp.StanfordDependencies;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.semanticwebrules.jena.JenaRulesProcessor;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 
 public class SemanticWebRulesService {

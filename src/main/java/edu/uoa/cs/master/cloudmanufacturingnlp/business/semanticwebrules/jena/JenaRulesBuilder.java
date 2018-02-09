@@ -17,7 +17,7 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.semanticwebrules.jena;
+package edu.uoa.cs.master.cloudmanufacturingnlp.business.semanticwebrules.jena;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
-import edu.uoa.cs.master.cloudmanufacturingnlp.dictionary.DictionaryService;
-import edu.uoa.cs.master.cloudmanufacturingnlp.jena.OntologyService;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.dictionary.DictionaryService;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.ontology.OntologyService;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Tools;
 

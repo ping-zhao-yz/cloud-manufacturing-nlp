@@ -17,7 +17,7 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.dictionary;
+package edu.uoa.cs.master.cloudmanufacturingnlp.business.dictionary;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

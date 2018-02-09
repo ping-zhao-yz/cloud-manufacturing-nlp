@@ -17,7 +17,7 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.jena;
+package edu.uoa.cs.master.cloudmanufacturingnlp.business.ontology;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +35,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.PrintUtil;
 
-import edu.uoa.cs.master.cloudmanufacturingnlp.dictionary.DictionaryService;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.dictionary.DictionaryService;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Constants;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Tools;
 

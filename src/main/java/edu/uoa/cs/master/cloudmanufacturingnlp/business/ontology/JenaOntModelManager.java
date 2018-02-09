@@ -17,7 +17,7 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.jena;
+package edu.uoa.cs.master.cloudmanufacturingnlp.business.ontology;
 
 import java.util.ArrayList;
 import java.util.List;

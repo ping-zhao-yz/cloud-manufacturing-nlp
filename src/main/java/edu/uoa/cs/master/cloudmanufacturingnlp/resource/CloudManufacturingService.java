@@ -17,7 +17,7 @@
  * Created: 2015-06-10
  * Last Updated: --
  */
-package edu.uoa.cs.master.cloudmanufacturingnlp.rest;
+package edu.uoa.cs.master.cloudmanufacturingnlp.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,8 +25,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import edu.uoa.cs.master.cloudmanufacturingnlp.dao.JenaRulesDAO;
-import edu.uoa.cs.master.cloudmanufacturingnlp.semanticwebrules.SemanticWebRulesService;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.dao.JenaRulesDAO;
+import edu.uoa.cs.master.cloudmanufacturingnlp.business.semanticwebrules.SemanticWebRulesService;
 import edu.uoa.cs.master.cloudmanufacturingnlp.util.Tools;
 
 @Path("/")
